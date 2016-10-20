@@ -26,6 +26,7 @@ header ul{
     align-items: center;
     flex-wrap: wrap;
     background-color: #AAAAAA;
+    border-radius: 3px;
 }
 
 header ul li img{
@@ -38,20 +39,69 @@ header ul li a{
     font-size: 1.5rem;
 }
 
-body div div{
+header ul li a:hover{
+    color: #4A4C4E;
+}
+
+body div div.heroes{
+    width: min-content;
+    padding: 10px;
     margin-top: 25px;
     font-style: normal;
     font-weight: normal;
     font-size: 2rem;
-    color: #4A4C4E
-}
-
-body div div{
+    color: #4A4C4E;
     display: flex;
     flex-direction: row;
+    border-radius: 3px;
+}
+
+body div div.heroes:hover{
+    color: #FF9C1E;
+    background-color: #AAAAAA;
+}
+
+body section div#name{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+body section div#lore_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+body section div#game_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+body section div h1{
+    color: #FF9C1E;
+    font-style: normal;
+    font-size: 2rem;
+    padding: 0px;
+    margin: 25px 0px 25px 0px;
+}
+
+body section div h2{
+    color: #AAAAAA;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    padding: 0px;
+    margin: 25px 0px 25px 0px;
+
 }
 
 body div p{
+    margin-top: 0px;
     font-style: normal;
     font-weight: normal;
     font-size: 1.5rem;

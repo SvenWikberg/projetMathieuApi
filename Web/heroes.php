@@ -11,7 +11,7 @@
     ?>
     <header>
         <ul id="nav">
-            <li><img src="img/logo.png" alt="Logo" id="logo"></li>
+            <li><a href="index.php"><img src="img/logo.png" alt="Logo" id="logo"></a></li>
             <li class="navName"><a href="heroes.php"><h2>Heroes</h2></a></li>
             <li class="navName"><a href="#"><h2>All Rewards</h2></a></li>
         </ul>
@@ -21,7 +21,7 @@
 
             foreach (heroes()->data as $hero){
                 echo '<div>
-                          <div>' . $hero->name . '</div>
+                          <a href="hero.php?id=' . $hero->id . '"><div class="heroes">' . $hero->name . '</div></a>
                           <p>' . $hero->description . '</p>
                       </div>';
             }
