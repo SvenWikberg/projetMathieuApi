@@ -100,6 +100,31 @@ body section div h2{
 
 }
 
+body section div div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+	align-items: center;
+}
+
+body section div div img{
+	height: 20px;
+}
+
+body section div div p{
+	margin: 0px;
+}
+
+body section div div p#life{
+	color: #FF497A;
+}
+body section div div p#armor{
+	color: #72BDEA;
+}
+body section div div p#shield{
+	color: #FABE1E;
+}
+
 body div p{
     margin-top: 0px;
     font-style: normal;

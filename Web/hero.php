@@ -17,32 +17,85 @@
         </ul>
     </header>
     <body>
-        <section>
-            <div id="name">
-                <h1>Ana</h1>
-                <h2>Ana Amari</h2>
-            </div>
-            <div id="lore_info">
-                <p>Affiliation : Overwatch</p>
-                <p>Base Of Operations : Cairo, Egypt</p>
-            </div>
-            <div id="game_info">
-                <div>
-                    <p>200</p>
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <p>0</p>
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <p>0</p>
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <img src="" alt="">
-                </div>
-            </div>
-        </section>
+		<section>
+			<?php
+				$hero = hero($_GET['id']);
+				
+				echo '<div id="name">';
+				echo 	'<h1>' . $hero->name . '</h1>';
+				echo 	'<h2>' . $hero->real_name . '</h2>';
+				echo '</div>';
+				
+				echo '<div id="lore_info">';
+				echo 	'<p>Affiliation : ' . $hero->affiliation . '</p>';
+				echo 	'<p>Base Of Operations : ' . $hero->base_of_operations . '</p>';
+				echo 	'<p>Role : ' . $hero->role->name . '</p>';
+				echo '</div>';
+				
+				echo '<div id="game_info">';
+				echo 	'<div>';
+				echo 		'<p id="life">' . $hero->health . '</p>';
+				echo 		'<img src="img/heart.png" alt="Life">';
+				echo 	'</div>';
+				echo 	'<div>';
+				echo 		'<p id="armor">' . $hero->armour . '</p>';
+				echo		'<img src="img/armor.png" alt="Armor">';
+				echo 	'</div>';
+				echo 	'<div>';
+				echo 		'<p id="shield">' . $hero->shield . '</p>';
+				echo 		'<img src="img/shield.png" alt="Shield">';
+				echo 	'</div>';
+				echo    '<div>';
+				for ($i = 1; $i <= $hero->difficulty; $i++) {
+					echo '<img src="img/star.png" alt="Difficulty">';
+				} 
+                echo 	'</div>';
+				echo '</div>';
+			?>
+		</section
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
