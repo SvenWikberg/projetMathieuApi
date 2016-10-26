@@ -18,54 +18,40 @@
     </header>
     <body>
 		<section>
-			<?php $hero = hero($_GET['id']); ?>
+			<?php
+				$hero = hero($_GET['id']);
 				
-			<div id="name">
-			<h1><?php echo $hero->name ?></h1>
-			<h2><?php echo $hero->real_name ?></h2>
-			</div>
+				echo '<div id="name">';
+				echo 	'<h1>' . $hero->name . '</h1>';
+				echo 	'<h2>' . $hero->real_name . '</h2>';
+				echo '</div>';
 				
-			<div id="lore_info">
-				<p>Affiliation : <?php echo (empty($hero->affiliation))?'None':$hero->affiliation ?></p>
-				<p>Base Of Operations : <?php echo (empty($hero->base_of_operations))?'None':$hero->base_of_operations ?></p>
-			</div>
+				echo '<div id="lore_info">';
+				echo 	'<p>Affiliation : ' . $hero->affiliation . '</p>';
+				echo 	'<p>Base Of Operations : ' . $hero->base_of_operations . '</p>';
+				echo 	'<p>Role : ' . $hero->role->name . '</p>';
+				echo '</div>';
 				
-			<div class="game_info">
-				<p>Role : <?php echo $hero->role->name ?></p>
-				<?php
-					if(!empty($hero->sub_roles))
-					{
-						echo '<p>Sub-Role : ';
-						foreach($hero->sub_roles as $subRole)
-						{
-							echo ($subRole->id == count($hero->sub_roles) + 1)?$subRole->name:$subRole->name . ', ';
-						}
-						echo '</p>';
-					}
-				?>
-			</div>
-
-			<div class="game_info">
-				<div>
-					<p id="life"><?php echo $hero->health ?></p>
-					<img src="img/heart.png" alt="Life">
-				</div>
-				<div>
-					<p id="armor"><?php echo $hero->armour ?></p>
-					<img src="img/armor.png" alt="Armor">
-				</div>
-				<div>
-				<p id="shield"><?php echo $hero->shield ?></p>
-				<img src="img/shield.png" alt="Shield">
-				</div>
-				<div>
-				<?php
-					for ($i = 1; $i <= $hero->difficulty; $i++) {
+				echo '<div id="game_info">';
+				echo 	'<div>';
+				echo 		'<p id="life">' . $hero->health . '</p>';
+				echo 		'<img src="img/heart.png" alt="Life">';
+				echo 	'</div>';
+				echo 	'<div>';
+				echo 		'<p id="armor">' . $hero->armour . '</p>';
+				echo		'<img src="img/armor.png" alt="Armor">';
+				echo 	'</div>';
+				echo 	'<div>';
+				echo 		'<p id="shield">' . $hero->shield . '</p>';
+				echo 		'<img src="img/shield.png" alt="Shield">';
+				echo 	'</div>';
+				echo    '<div>';
+				for ($i = 1; $i <= $hero->difficulty; $i++) {
 					echo '<img src="img/star.png" alt="Difficulty">';
-					} 
-				?>
-				</div>
-			</div>
+				} 
+                echo 	'</div>';
+				echo '</div>';
+			?>
 		</section
     </body>
 </html>

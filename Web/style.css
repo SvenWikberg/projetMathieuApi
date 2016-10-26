@@ -73,10 +73,9 @@ body section div#lore_info{
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    flex-wrap: wrap;
 }
 
-body section div.game_info{
+body section div#game_info{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -120,10 +119,10 @@ body section div div p#life{
 	color: #FF497A;
 }
 body section div div p#armor{
-	color: #FABE1E;
+	color: #72BDEA;
 }
 body section div div p#shield{
-    color: #72BDEA;
+	color: #FABE1E;
 }
 
 body div p{
