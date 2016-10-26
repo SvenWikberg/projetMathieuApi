@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Titre de la page</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style-hero.css">
         <script src="script.js"></script>
     </head>
     <?php
@@ -17,20 +17,22 @@
         </ul>
     </header>
     <body>
-		<section>
+		<section id="lore">
 			<?php $hero = hero($_GET['id']); ?>
 				
 			<div id="name">
-			<h1><?php echo $hero->name ?></h1>
-			<h2><?php echo $hero->real_name ?></h2>
+				<h1><?php echo $hero->name ?></h1>
+				<h2><?php echo $hero->real_name ?></h2>
 			</div>
 				
-			<div id="lore_info">
+			<div id="info">
 				<p>Affiliation : <?php echo (empty($hero->affiliation))?'None':$hero->affiliation ?></p>
 				<p>Base Of Operations : <?php echo (empty($hero->base_of_operations))?'None':$hero->base_of_operations ?></p>
 			</div>
-				
-			<div class="game_info">
+		</section>
+		
+		<section id="game">
+			<div id="role">
 				<p>Role : <?php echo $hero->role->name ?></p>
 				<?php
 					if(!empty($hero->sub_roles))
@@ -45,7 +47,7 @@
 				?>
 			</div>
 
-			<div class="game_info">
+			<div id="stats">
 				<div>
 					<p id="life"><?php echo $hero->health ?></p>
 					<img src="img/heart.png" alt="Life">
@@ -66,7 +68,29 @@
 				?>
 				</div>
 			</div>
-		</section
+		</section>
+		
+		
+		<section id="abilities">
+			<h1>Abilities</h1>
+			<div>
+				<?php
+					foreach($hero->abilities as $ability)
+						{
+							echo '<div>';
+							echo 	'<h3>' . $ability->name . '</h3>';
+							echo 	'<p>' . $ability->description . '</p>';
+							echo '</div>';
+						} 
+				?>
+			</div>
+		</section>
+		
+		<section id="rewards">
+			<h1>Rewards</h1>
+			<section id="skin">
+			</section>
+		</section>
     </body>
 </html>
 

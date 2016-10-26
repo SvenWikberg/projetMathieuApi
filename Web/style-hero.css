@@ -1,0 +1,187 @@
+@font-face {
+    font-family: "BigNoodle";
+    src: url('font/big_noodle_titling.ttf');
+}
+@font-face {
+    font-family: "BigNoodle";
+    font-style: italic;
+    src: url('font/big_noodle_titling_oblique.ttf');
+}
+
+body{
+    font-family: "BigNoodle", Helvetica, Arial, sans-serif;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FAFAFA;
+}
+
+header ul{
+    margin: 0px;
+    padding: 20px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #AAAAAA;
+    border-radius: 3px;
+}
+
+header ul li img{
+    width: 90px;
+}
+
+header ul li a{
+    color: #FF9C1E;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+header ul li a:hover{
+    color: #4A4C4E;
+}
+
+body section#lore div#name{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+	align-items: flex-end;
+} 
+
+body section#lore div#name h1{
+	margin-bottom: 10px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 3rem;
+    color: #FF9C1E;
+} 
+body section#lore div#name h2{
+	margin-bottom: 13px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2rem;
+    color: #AAAAAA;
+} 
+
+body section#lore div#info{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+} 
+
+body section#game div#role{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+} 
+
+body section#game div#stats{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+} 
+
+body section#game div#stats div{
+	display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+} 
+
+body section#game div#stats div p{
+	margin: 0px;
+}
+
+body section#game div#stats div img{
+	height: 20px;
+} 
+
+body section#game div div p#life{
+	color: #FF497A;
+}
+body section#game div div p#armor{
+	color: #FABE1E;
+}
+body section#game div div p#shield{
+    color: #72BDEA;
+}
+
+body section#abilities h1{
+	margin-bottom: 0px;
+	margin-top: 50px;
+	font-style: italic;
+    font-weight: normal;
+    font-size: 2.5rem;
+    color: #FF9C1E;
+}
+
+body section#abilities div{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+body section#abilities div div{
+	display: flex;
+    flex-direction: column;
+	justify-content: flex-start;
+	width: 45%;
+}
+
+body section#abilities div div h3{
+	font-style: normal;
+    font-weight: normal;
+    font-size: 2rem;
+    color: #AAAAAA;
+	margin-bottom: 0px;
+}
+
+body section#rewards h1{
+	margin-bottom: 0px;
+	font-style: italic;
+    font-weight: normal;
+    font-size: 2.5rem;
+    color: #FF9C1E;
+}
+
+
+
+
+
+p{
+    margin-top: 0px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    text-align: justify;
+    color: #4A4C4E
+}
+
+a {
+    text-decoration: none;
+}
+
+.heroOffence{
+color: #D10000;
+}
+
+.heroDefence{
+color: #32CD32;
+}
+
+.heroTank{
+color: #006BFF;
+}
+
+.heroSupport{
+color: #32CD32;
+}
