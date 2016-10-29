@@ -78,7 +78,7 @@
 					foreach($hero->abilities as $ability)
 						{
 							echo '<div>';
-							echo 	'<h3>' . $ability->name . '</h3>';
+							echo 	'<h2>' . $ability->name . '</h2>';
 							echo 	'<p>' . $ability->description . '</p>';
 							echo '</div>';
 						} 
@@ -88,6 +88,43 @@
 		
 		<section id="rewards">
 			<h1>Rewards</h1>
+			<h2>Skins</h2>
+			<?php
+				foreach($hero->rewards as $reward)
+				{
+					if($reward->type->name == 'skin'){
+						
+						$common = '<p id="commonp">Common</p><div id="common">';
+						$rare = '<p id="rarep">Rare</p><div id="rare">';
+						$epic = '<p id="epicp">Epic</p><div id="epic">';
+						$legendary = '<p id="legendaryp">Legendary</p><div id="legendary">';
+						
+						if($reward->quality->name == 'common'){
+							$common = $common . '<p>' . $reward->name . '</p>';
+						}
+						if($reward->quality->name == 'rare'){
+							$rare = $rare . '<p>' . $reward->name . '</p>';
+						}
+						if($reward->quality->name == 'epic'){
+							$epic = $epic . '<p>' . $reward->name . '</p>';
+						}
+						if($reward->quality->name == 'legendary'){
+							$legendary = $legendary . '<p>' . $reward->name . '</p>';
+						}
+						$common = $common . '</div>';
+						$rare = $rare . '</div>';
+						$epic = $epic . '</div>';
+						$legendary = $legendary . '</div>';
+				
+						echo $common = $common;
+						echo $rare = $rare;
+						$epic = $epic;
+						echo $legendary = $legendary;
+					}
+				} 
+				
+				
+			?>
 			<section id="skin">
 			</section>
 		</section>
