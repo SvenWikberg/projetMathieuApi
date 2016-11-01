@@ -25,4 +25,12 @@
         }
     }*/
 ////////////////
+
+
+////////////////Sync Events
+    /*$events = events();
+    foreach($events->data as $event){
+                $myPDO->query('INSERT INTO events VALUES (' . $event->id . ',"' . $event->name . '","' . $event->start_date . '","' . $event->end_date . '")');
+    }*/
+////////////////
 ?>
