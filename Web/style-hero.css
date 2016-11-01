@@ -158,14 +158,18 @@ body section#rewards h2{
     font-weight: normal;
     font-size: 2rem;
     color: #AAAAAA;
-	}
+}
 
 body section#rewards div{
 	display: flex;
     flex-direction: row;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	}
+}
+
+body section#rewards div p{
+	min-width: 25%;
+}
 	
 body section#rewards div h3{
     margin-top: 0px;
@@ -173,7 +177,7 @@ body section#rewards div h3{
     font-weight: normal;
     font-size: 1.5rem;
     color: #4A4C4E
-	}
+}
 
 
 
@@ -207,22 +211,26 @@ color: #006BFF;
 color: #32CD32;
 }
 
-#commonp{
+.commonp{
 	color: #000000;
 	margin-bottom: 10px;
+    font-size: 1.8rem;
 }
 
-#rarep{
+.rarep{
 	color: #01C2FD;
 	margin-bottom: 10px;
+    font-size: 1.8rem;
 }
 
-#epicp{
+.epicp{
 	color: #FE01FE;
 	margin-bottom: 10px;
+    font-size: 1.8rem;
 }
 
-#legendaryp{
+.legendaryp{
 	color: #FF9C1E;
 	margin-bottom: 10px;
+    font-size: 1.8rem;
 }

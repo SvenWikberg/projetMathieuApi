@@ -88,42 +88,74 @@
 		
 		<section id="rewards">
 			<h1>Rewards</h1>
-			<h2>Skins</h2>
 			<?php
+
+			$skinTab = [
+				'title' => '<h2>Skins</h2>',
+				'common' => '<p class="commonp">Common</p><div class="common">',
+				'rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+			];
+			$introTab = [
+				'title' => '<h2>Highlight Intros</h2>',
+				'common' => '<p class="commonp">Common</p><div class="common">',
+				'rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+			];
+			$emoteTab = [
+				'title' => '<h2>Emotes</h2>',
+				'common' => '<p class="commonp">Common</p><div class="common">',
+				'rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+			];
+			$poseTab = [
+				'title' => '<h2>Victory Poses</h2>',
+				'common' => '<p class="commonp">Common</p><div class="common">',
+				'rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+			];
+			$sprayTab = [
+				'title' => '<h2>Sprays</h2>',
+				'common' => '<p class="commonp">Common</p><div class="common">',
+				'rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+			];
+			$voiceTab = [
+				'title' => '<h2>Voice Lines</h2>',
+				'common' => '<p class="commonp">Common</p><div class="common">',
+				'rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+			];
+
+
+			$rewardTab = [
+				'skin' => $skinTab,
+				'highlight intro' => $introTab,
+				'emote' => $emoteTab,
+				'victory pose' => $poseTab,
+				'spray' => $sprayTab,
+				'voice line' => $voiceTab
+			];
+
 				foreach($hero->rewards as $reward)
 				{
-					if($reward->type->name == 'skin'){
-						
-						$common = '<p id="commonp">Common</p><div id="common">';
-						$rare = '<p id="rarep">Rare</p><div id="rare">';
-						$epic = '<p id="epicp">Epic</p><div id="epic">';
-						$legendary = '<p id="legendaryp">Legendary</p><div id="legendary">';
-						
-						if($reward->quality->name == 'common'){
-							$common = $common . '<p>' . $reward->name . '</p>';
-						}
-						if($reward->quality->name == 'rare'){
-							$rare = $rare . '<p>' . $reward->name . '</p>';
-						}
-						if($reward->quality->name == 'epic'){
-							$epic = $epic . '<p>' . $reward->name . '</p>';
-						}
-						if($reward->quality->name == 'legendary'){
-							$legendary = $legendary . '<p>' . $reward->name . '</p>';
-						}
-						$common = $common . '</div>';
-						$rare = $rare . '</div>';
-						$epic = $epic . '</div>';
-						$legendary = $legendary . '</div>';
-				
-						echo $common = $common;
-						echo $rare = $rare;
-						$epic = $epic;
-						echo $legendary = $legendary;
-					}
+					$rewardTab[$reward->type->name][$reward->quality->name] .= '<p>' . $reward->name . '</p>';
 				} 
 				
-				
+				foreach($rewardTab as $tab){
+					foreach($tab as $itemQuality){
+						if($itemQuality[strlen($itemQuality) - 2] == 'p' || $itemQuality[strlen($itemQuality) - 2] == '2'){ //si l'avant dernier caractere est un 'p' ou un '2' ça veut dire qu'on a ajouté une reward dans ce string donc on l'affiche
+								$itemQuality .= '</div>';
+								echo $itemQuality;
+						}
+					}
+				}
 			?>
 			<section id="skin">
 			</section>
