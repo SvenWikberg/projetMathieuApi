@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 01 Novembre 2016 à 16:42
+-- Généré le :  Mar 08 Novembre 2016 à 14:43
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `abilities` (
   `id_hero` int(11) NOT NULL,
   `is_ultimate` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_ability`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
 
 --
 -- Contenu de la table `abilities`
@@ -142,7 +142,12 @@ INSERT INTO `abilities` (`id_ability`, `name`, `description`, `id_hero`, `is_ult
 (101, 'Orb of Destruction', 'Zenyatta projects his destructive energy orbs either individually, or in a rapid-fire volley after a few seconds spent gathering power.', 22, 1),
 (102, 'Orb of Harmony', 'Zenyatta casts an orb over the shoulder of a targeted ally. So long as Zenyatta maintains line of sight, the orb slowly restores health to his ally. Only one ally can receive the orb''s benefit at a time.', 22, 1),
 (103, 'Orb of Discord', 'Attaching the orb of discord to an opponent amplifies the amount of damage they receive for as long as Zenyatta maintains line of sight. Only one opponent can suffer the orb''s effects at a time.', 22, 1),
-(104, 'Transcendence', 'Zenyatta enters a state of heightened existence for a short period of time. While transcendent, Zenyatta cannot use abilities or weapons, but is immune to damage, moves twice as fast, and automatically restores his health and that of nearby allies.', 22, 0);
+(104, 'Transcendence', 'Zenyatta enters a state of heightened existence for a short period of time. While transcendent, Zenyatta cannot use abilities or weapons, but is immune to damage, moves twice as fast, and automatically restores his health and that of nearby allies.', 22, 0),
+(105, 'Machine Pistol', 'Sombra’s fully-automatic machine pistol fires in a short-range spread.', 23, 1),
+(106, 'Hack', 'Sombra hacks enemies to temporarily stop them from using their abilities, or hacks first aid kits to make them useless to her opponents.', 23, 1),
+(107, 'Thermoptic Camo', 'Sombra becomes invisible for a short period of time, during which her speed is boosted considerably. Attacking, using offensive abilities, or taking damage disables her camouflage.', 23, 1),
+(108, 'Translocator', 'Sombra tosses out a translocator beacon. She can instantly return to the beacon’s location while it is active (including when it’s in mid-flight).', 23, 1),
+(109, 'EMP', 'Sombra discharges electromagnetic energy in a wide radius, destroying enemy barriers and shields and hacking all opponents caught in the blast.', 23, 0);
 
 -- --------------------------------------------------------
 
@@ -156,14 +161,15 @@ CREATE TABLE IF NOT EXISTS `events` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   PRIMARY KEY (`id_event`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `events`
 --
 
 INSERT INTO `events` (`id_event`, `name`, `start_date`, `end_date`) VALUES
-(1, 'Summer Games 2016', '2016-08-02', '2016-08-22');
+(1, 'Summer Games 2016', '2016-08-02', '2016-08-22'),
+(2, 'Halloween Terror', '2016-10-11', '2016-11-01');
 
 -- --------------------------------------------------------
 
@@ -183,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `heroes` (
   `age` int(11) NOT NULL,
   `height` int(11) DEFAULT NULL,
   `affiliation` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `base_of_operation` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `base_of_operations` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `difficulty` int(11) NOT NULL,
   PRIMARY KEY (`id_hero`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -192,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `heroes` (
 -- Contenu de la table `heroes`
 --
 
-INSERT INTO `heroes` (`id_hero`, `name`, `description`, `id_role`, `health`, `armour`, `shield`, `real_name`, `age`, `height`, `affiliation`, `base_of_operation`, `difficulty`) VALUES
+INSERT INTO `heroes` (`id_hero`, `name`, `description`, `id_role`, `health`, `armour`, `shield`, `real_name`, `age`, `height`, `affiliation`, `base_of_operations`, `difficulty`) VALUES
 (1, 'Ana', 'Ana’s versatile arsenal allows her to affect heroes all over the battlefield. Her Biotic Rifle rounds and Biotic Grenades heal allies and damage or impair enemies; her sidearm tranquilizes key targets, and Nano Boost gives one of her comrades a considerable increase in power.', 4, 200, 0, 0, 'Ana Amari', 60, NULL, 'Overwatch', 'Cairo, Egypt', 3),
 (2, 'Bastion', 'Repair protocols and the ability to transform between stationary Assault, mobile Recon and devastating Tank configurations provide Bastion with a high probability of victory.', 2, 200, 100, 0, 'SST Laboratories Siege Automaton E54', 30, 220, 'NULL', 'NULL', 1),
 (3, 'D.Va', 'D.Va’s mech is nimble and powerful—its twin Fusion Cannons blast away with autofire at short range, and she can use its Boosters to barrel over enemies and obstacles, or deflect attacks with her projectile-dismantling Defense Matrix.', 3, 100, 400, 0, 'Hana Song', 19, NULL, 'Mobile Exo-Force of the Korean Army', 'Busan, South Korea', 2),
@@ -213,7 +219,8 @@ INSERT INTO `heroes` (`id_hero`, `name`, `description`, `id_role`, `health`, `ar
 (19, 'Widowmaker', 'Widowmaker equips herself with whatever it takes to eliminate her targets, including mines that dispense poisonous gas, a visor that grants her squad infra-sight, and a powerful sniper rifle that can fire in fully-automatic mode.', 2, 200, 0, 0, 'Amélie Lacroix', 33, 175, 'Talon', 'Annecy, France', 2),
 (20, 'Winston', 'Winston wields impressive inventions—a jump pack, electricity-blasting Tesla Cannon, portable shield projector and more—with literal gorilla strength.', 3, 400, 100, 0, 'Winston', 29, 220, 'Overwatch', 'Watchpoint Gibraltar', 2),
 (21, 'Zarya', 'Deploying powerful personal barriers that convert incoming damage into energy for her massive Particle Cannon, Zarya is an invaluable asset on the front lines of any battle.', 3, 200, 0, 200, 'Aleksandra Zaryanova', 28, 195, 'Russian Defense Forces', 'Krasnoyarsk Front, Russia', 3),
-(22, 'Zenyatta', 'Zenyatta calls upon orbs of harmony and discord to heal his teammates and weaken his opponents, all while pursuing a transcendent state of immunity to damage.', 4, 50, 0, 150, 'Tekhartha Zenyatta', 20, 172, 'The Shambali', 'Shambali Monastery, Nepal', 3);
+(22, 'Zenyatta', 'Zenyatta calls upon orbs of harmony and discord to heal his teammates and weaken his opponents, all while pursuing a transcendent state of immunity to damage.', 4, 50, 0, 150, 'Tekhartha Zenyatta', 20, 172, 'The Shambali', 'Shambali Monastery, Nepal', 3),
+(23, 'Sombra', 'Stealth and debilitating attacks make Sombra a powerful infiltrator. Her hacking can disrupt her enemies, ensuring they''re easier to take out, while her EMP provides the upper hand against multiple foes at once. Sombra’s ability to Translocate and camouflage herself makes her a hard target to pin down.', 1, 200, 0, 0, '', 30, NULL, 'Talon', 'Dorado, Mexico', 3);
 
 -- --------------------------------------------------------
 
@@ -277,16 +284,16 @@ CREATE TABLE IF NOT EXISTS `rewards` (
   `id_hero` int(11) DEFAULT NULL,
   `cost` int(11) DEFAULT NULL,
   `id_currency` int(11) NOT NULL,
-  `quality_id` int(11) DEFAULT NULL,
-  `event_id` int(11) DEFAULT NULL,
+  `id_quality` int(11) DEFAULT NULL,
+  `id_event` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_reward`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1575 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1753 ;
 
 --
 -- Contenu de la table `rewards`
 --
 
-INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`, `id_currency`, `quality_id`, `event_id`) VALUES
+INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`, `id_currency`, `id_quality`, `id_event`) VALUES
 (1, 'Logo', 1, 0, 0, 0, 1, 0),
 (2, 'You Are Not Prepared!', 1, 0, 0, 0, 1, 0),
 (3, 'Punch', 1, 0, 25, 1, 1, 0),
@@ -1611,7 +1618,7 @@ INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`,
 (1322, 'Yeti Hunter', 7, 9, 1000, 1, 4, 0),
 (1323, 'Classic', 7, 10, 0, 0, 1, 0),
 (1324, 'Mist', 7, 10, 75, 1, 2, 0);
-INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`, `id_currency`, `quality_id`, `event_id`) VALUES
+INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`, `id_currency`, `id_quality`, `id_event`) VALUES
 (1325, 'Orchid', 7, 10, 75, 1, 2, 0),
 (1326, 'Verdant', 7, 10, 75, 1, 2, 0),
 (1327, 'Celestial', 7, 10, 75, 1, 2, 0),
@@ -1851,7 +1858,185 @@ INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`,
 (1571, 'Track and Field', 7, 18, 0, 0, 4, 1),
 (1572, 'Tricolore', 7, 19, 0, 0, 3, 1),
 (1573, 'Champion', 7, 21, 0, 0, 4, 1),
-(1574, 'Weightlifter', 7, 21, 0, 0, 4, 1);
+(1574, 'Weightlifter', 7, 21, 0, 0, 4, 1),
+(1575, 'Ghoul', 7, 1, 750, 1, 3, 2),
+(1576, 'Tombstone', 7, 2, 750, 1, 3, 2),
+(1577, 'Demon', 7, 5, 750, 1, 3, 2),
+(1578, 'Possessed', 7, 11, 750, 1, 3, 2),
+(1579, 'Coldhardt', 7, 13, 750, 1, 3, 2),
+(1580, 'Immortal', 7, 15, 750, 1, 3, 2),
+(1581, 'Vampire', 7, 16, 750, 1, 3, 2),
+(1582, 'Skullyata', 7, 22, 750, 1, 3, 2),
+(1583, 'Dr. Junkenstein', 7, 6, 3000, 1, 4, 2),
+(1584, 'Witch', 7, 10, 3000, 1, 4, 2),
+(1585, 'Pumpkin', 7, 12, 3000, 1, 4, 2),
+(1586, 'Junkenstein’s Monster', 7, 14, 3000, 1, 4, 2),
+(1587, 'Candy', 5, 1, 750, 1, 3, 2),
+(1588, 'Pumpkin Smash', 5, 13, 750, 1, 3, 2),
+(1589, 'Shadow Puppets', 5, 20, 750, 1, 3, 2),
+(1590, 'R.I.P', 4, 1, 225, 1, 2, 2),
+(1591, 'R.I.P', 4, 2, 225, 1, 2, 2),
+(1592, 'R.I.P', 4, 3, 225, 1, 2, 2),
+(1593, 'R.I.P', 4, 4, 225, 1, 2, 2),
+(1594, 'R.I.P', 4, 5, 225, 1, 2, 2),
+(1595, 'R.I.P', 4, 6, 225, 1, 2, 2),
+(1596, 'R.I.P', 4, 7, 225, 1, 2, 2),
+(1597, 'R.I.P', 4, 8, 225, 1, 2, 2),
+(1598, 'R.I.P', 4, 9, 225, 1, 2, 2),
+(1599, 'R.I.P', 4, 10, 225, 1, 2, 2),
+(1600, 'R.I.P', 4, 11, 225, 1, 2, 2),
+(1601, 'R.I.P', 4, 12, 225, 1, 2, 2),
+(1602, 'R.I.P', 4, 13, 225, 1, 2, 2),
+(1603, 'R.I.P', 4, 14, 225, 1, 2, 2),
+(1604, 'R.I.P', 4, 15, 225, 1, 2, 2),
+(1605, 'R.I.P', 4, 16, 225, 1, 2, 2),
+(1606, 'R.I.P', 4, 17, 225, 1, 2, 2),
+(1607, 'R.I.P', 4, 18, 225, 1, 2, 2),
+(1608, 'R.I.P', 4, 19, 225, 1, 2, 2),
+(1609, 'R.I.P', 4, 20, 225, 1, 2, 2),
+(1610, 'R.I.P', 4, 21, 225, 1, 2, 2),
+(1611, 'R.I.P', 4, 22, 225, 1, 2, 2),
+(1612, 'Are You Scared?', 2, 1, 75, 1, 1, 2),
+(1613, 'W-W-Wooooo...?', 2, 2, 75, 1, 1, 2),
+(1614, 'Happy Halloween!', 2, 3, 75, 1, 1, 2),
+(1615, 'My Halloween Costume?', 2, 4, 75, 1, 1, 2),
+(1616, 'You Are Already Dead', 2, 5, 75, 1, 1, 2),
+(1617, 'Happy Halloween', 2, 6, 75, 1, 1, 2),
+(1618, 'Killed It!', 2, 7, 75, 1, 1, 2),
+(1619, 'It''s Your Funeral', 2, 8, 75, 1, 1, 2),
+(1620, 'Scary!', 2, 9, 75, 1, 1, 2),
+(1621, 'Superstition', 2, 10, 75, 1, 1, 2),
+(1622, 'Dead Or Alive', 2, 11, 75, 1, 1, 2),
+(1623, 'I Work The Graveyard Shift', 2, 12, 75, 1, 1, 2),
+(1624, 'Smashing', 2, 13, 75, 1, 1, 2),
+(1625, 'Want Some Candy?', 2, 14, 75, 1, 1, 2),
+(1626, 'Knock Knock', 2, 15, 75, 1, 1, 2),
+(1627, 'A Frightening Thought', 2, 16, 75, 1, 1, 2),
+(1628, 'If You Build It', 2, 17, 75, 1, 1, 2),
+(1629, 'Ooh, Scary!', 2, 18, 75, 1, 1, 2),
+(1630, 'The Party Is Over', 2, 19, 75, 1, 1, 2),
+(1631, 'This Is Not A Costume', 2, 20, 75, 1, 1, 2),
+(1632, 'Never Forget The Fallen', 2, 21, 75, 1, 1, 2),
+(1633, 'Trick Or Treat?', 2, 22, 75, 1, 1, 2),
+(1634, 'Trick Or Treat', 1, 1, 75, 1, 1, 2),
+(1635, 'Trick Or Treat', 1, 2, 75, 1, 1, 2),
+(1636, 'Trick Or Treat', 1, 3, 75, 1, 1, 2),
+(1637, 'Trick Or Treat', 1, 4, 75, 1, 1, 2),
+(1638, 'Trick Or Treat', 1, 5, 75, 1, 1, 2),
+(1639, 'Trick Or Treat', 1, 6, 75, 1, 1, 2),
+(1640, 'Trick Or Treat', 1, 7, 75, 1, 1, 2),
+(1641, 'Trick Or Treat', 1, 8, 75, 1, 1, 2),
+(1642, 'Trick Or Treat', 1, 9, 75, 1, 1, 2),
+(1643, 'Trick Or Treat', 1, 10, 75, 1, 1, 2),
+(1644, 'Trick Or Treat', 1, 11, 75, 1, 1, 2),
+(1645, 'Trick Or Treat', 1, 12, 75, 1, 1, 2),
+(1646, 'Trick Or Treat', 1, 13, 75, 1, 1, 2),
+(1647, 'Trick Or Treat', 1, 14, 75, 1, 1, 2),
+(1648, 'Trick Or Treat', 1, 15, 75, 1, 1, 2),
+(1649, 'Trick Or Treat', 1, 16, 75, 1, 1, 2),
+(1650, 'Trick Or Treat', 1, 17, 75, 1, 1, 2),
+(1651, 'Trick Or Treat', 1, 18, 75, 1, 1, 2),
+(1652, 'Trick Or Treat', 1, 19, 75, 1, 1, 2),
+(1653, 'Trick Or Treat', 1, 20, 75, 1, 1, 2),
+(1654, 'Trick Or Treat', 1, 21, 75, 1, 1, 2),
+(1655, 'Trick Or Treat', 1, 22, 75, 1, 1, 2),
+(1656, '...Never Die', 1, 0, 75, 1, 1, 2),
+(1657, 'Bats', 1, 0, 75, 1, 1, 2),
+(1658, 'Boo!', 1, 0, 75, 1, 1, 2),
+(1659, 'Boop!', 1, 0, 75, 1, 1, 2),
+(1660, 'Candyball', 1, 0, 75, 1, 1, 2),
+(1661, 'Fangs', 1, 0, 75, 1, 1, 2),
+(1662, 'Gummy Hog', 1, 0, 75, 1, 1, 2),
+(1663, 'Halloween Terror', 1, 0, 75, 1, 1, 2),
+(1664, 'Pumpkins', 1, 0, 75, 1, 1, 2),
+(1665, 'Witch’s Brew', 1, 0, 75, 1, 1, 2),
+(1666, 'Rise Of The Zomnics', 1, 0, 0, 0, 1, 2),
+(1667, 'Junkenstein''s Revenge', 1, 0, 0, 0, 1, 2),
+(1668, 'Halloween Special', 1, 0, 0, 0, 1, 2),
+(1669, 'The Reapening', 1, 0, 0, 0, 1, 2),
+(1670, 'Pumpkin Carving', 6, 4, 750, 1, 3, 2),
+(1671, 'Ice Scream', 6, 9, 750, 1, 3, 2),
+(1672, 'Eternal Rest', 6, 12, 750, 1, 3, 2),
+(1673, 'Halloween Terror 2016', 3, 0, 0, 0, 2, 2),
+(1674, 'The Doctor', 3, 0, 0, 0, 2, 2),
+(1675, 'The Monster', 3, 0, 0, 0, 2, 2),
+(1676, 'The Reaper', 3, 0, 0, 0, 2, 2),
+(1677, 'The Witch', 3, 0, 0, 0, 2, 2),
+(1678, '...Never Die', 3, 0, 0, 0, 2, 2),
+(1679, 'Bewitching', 3, 0, 0, 0, 2, 2),
+(1680, 'Calavera', 3, 0, 0, 0, 2, 2),
+(1681, 'Candle', 3, 0, 0, 0, 2, 2),
+(1682, 'Eyeball', 3, 0, 0, 0, 2, 2),
+(1683, 'Ghostymari', 3, 0, 0, 0, 2, 2),
+(1684, 'Spider', 3, 0, 0, 0, 2, 2),
+(1685, 'Superstition', 3, 0, 0, 0, 2, 2),
+(1686, 'Tombstone', 3, 0, 0, 0, 2, 2),
+(1687, 'Vampachimari', 3, 0, 0, 0, 2, 2),
+(1688, 'Witch’s Brew', 3, 0, 0, 0, 2, 2),
+(1689, 'Witch''s Hat', 3, 0, 0, 0, 2, 2),
+(1690, 'Wolf', 3, 0, 0, 0, 2, 2),
+(1691, 'Classic', 7, 23, 0, 0, 1, 0),
+(1692, 'Cidro', 7, 23, 75, 1, 2, 0),
+(1693, 'Incendio', 7, 23, 75, 1, 2, 0),
+(1694, 'Mar', 7, 23, 75, 1, 2, 0),
+(1695, 'Noche', 7, 23, 75, 1, 2, 0),
+(1696, 'Glitch', 7, 23, 250, 1, 3, 0),
+(1697, 'Virus', 7, 23, 250, 1, 3, 0),
+(1698, 'Azúcar', 7, 23, 1000, 1, 4, 0),
+(1699, 'Los Muertos', 7, 23, 1000, 1, 4, 0),
+(1700, 'Augmented', 7, 23, 1000, 1, 4, 0),
+(1701, 'Cyberspace', 7, 23, 1000, 1, 4, 0),
+(1702, 'Heroic', 5, 23, 0, 0, 1, 0),
+(1703, 'Amused', 5, 23, 250, 1, 3, 0),
+(1704, 'Hold On', 5, 23, 250, 1, 3, 0),
+(1705, 'Masterpiece', 5, 23, 250, 1, 3, 0),
+(1706, 'Heroic', 4, 23, 0, 0, 1, 0),
+(1707, 'Hacked', 4, 23, 75, 1, 2, 0),
+(1708, 'Kneeling', 4, 23, 75, 1, 2, 0),
+(1709, 'Rising', 4, 23, 75, 1, 2, 0),
+(1710, 'Playing fair', 2, 23, 0, 0, 1, 0),
+(1711, 'Cool', 2, 23, 25, 1, 2, 0),
+(1712, 'Did You Mean To Do That?', 2, 23, 25, 1, 2, 0),
+(1713, 'Glitch On The System', 2, 23, 25, 1, 2, 0),
+(1714, 'Good One', 2, 23, 25, 1, 2, 0),
+(1715, 'Hack The Planet', 2, 23, 25, 1, 2, 0),
+(1716, 'In Over Your Head', 2, 23, 25, 1, 2, 0),
+(1717, 'Just Squishing A Bug', 2, 23, 25, 1, 2, 0),
+(1718, 'Mess With The Best...', 2, 23, 25, 1, 2, 0),
+(1719, 'Show Me What You Got', 2, 23, 25, 1, 2, 0),
+(1720, 'Taking This Very Seriously', 2, 23, 25, 1, 2, 0),
+(1721, 'Skull', 1, 23, 25, 1, 1, 0),
+(1722, 'Agent', 1, 23, 25, 1, 1, 0),
+(1723, 'Behind You', 1, 23, 25, 1, 1, 0),
+(1724, 'Calavera', 1, 23, 25, 1, 1, 0),
+(1725, 'Cute', 1, 23, 0, 0, 1, 0),
+(1726, 'Deaf-Mute', 1, 23, 25, 1, 1, 0),
+(1727, 'Eyes', 1, 23, 25, 1, 1, 0),
+(1728, 'Hacked', 1, 23, 25, 1, 1, 0),
+(1729, 'Hacked The Moon', 1, 23, 25, 1, 1, 0),
+(1730, 'Hacker', 1, 23, 25, 1, 1, 0),
+(1731, 'Icon', 1, 23, 25, 1, 1, 0),
+(1732, 'Illusive', 1, 23, 25, 1, 1, 0),
+(1733, 'Key', 1, 23, 25, 1, 1, 0),
+(1734, 'Machine Pistol', 1, 23, 25, 1, 1, 0),
+(1735, 'Marionette', 1, 23, 25, 1, 1, 0),
+(1736, 'Neural', 1, 23, 25, 1, 1, 0),
+(1737, 'Pixel', 1, 23, 0, 0, 1, 0),
+(1738, 'Power', 1, 23, 25, 1, 1, 0),
+(1739, 'Puzzle', 1, 23, 25, 1, 1, 0),
+(1740, 'Skull', 1, 23, 25, 1, 1, 0),
+(1741, 'Skycode', 1, 23, 25, 1, 1, 0),
+(1742, 'Superior', 1, 23, 25, 1, 1, 0),
+(1743, 'Tagged', 1, 23, 25, 1, 1, 0),
+(1744, 'Translocator', 1, 23, 25, 1, 1, 0),
+(1745, 'Unlocked', 1, 23, 25, 1, 1, 0),
+(1746, 'Virus', 1, 23, 25, 1, 1, 0),
+(1747, 'Web', 1, 23, 25, 1, 1, 0),
+(1748, '¿Quién?', 1, 23, 25, 1, 1, 0),
+(1749, 'Heroic', 6, 23, 0, 0, 1, 0),
+(1750, 'Hacking', 6, 23, 250, 1, 3, 0),
+(1751, 'Pulse', 6, 23, 250, 1, 3, 0),
+(1752, 'Undetected', 6, 23, 250, 1, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -1907,16 +2092,16 @@ INSERT INTO `roles` (`id_role`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sub_roles` (
-  `id_sub_roles` int(11) NOT NULL,
+  `id_sub_role` int(11) NOT NULL,
   `name` varchar(25) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`id_sub_roles`)
+  PRIMARY KEY (`id_sub_role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `sub_roles`
 --
 
-INSERT INTO `sub_roles` (`id_sub_roles`, `name`) VALUES
+INSERT INTO `sub_roles` (`id_sub_role`, `name`) VALUES
 (1, 'Builder'),
 (2, 'Healer'),
 (3, 'Sniper');
