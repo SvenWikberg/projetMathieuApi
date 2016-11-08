@@ -114,5 +114,17 @@
         $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_hero = ' . $id)->fetchAll();
         return $reqArray;
     }
+
+    function sqlSelectPlayerIcons(){
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_reward_type = 3')->fetchAll();
+        return $reqArray;
+    }
+
+    function sqlSelectSprays(){
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_reward_type = 1 AND id_hero IS NULL')->fetchAll();
+        return $reqArray;
+    }
 ////////////////
 ?>
