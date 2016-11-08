@@ -26,7 +26,7 @@ header ul{
     align-items: center;
     flex-wrap: wrap;
     background-color: #AAAAAA;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 header ul li img{
@@ -157,18 +157,20 @@ body section#rewards h2{
 	font-style: normal;
     font-weight: normal;
     font-size: 2rem;
-    color: #AAAAAA;
+    color: #000000;
 }
 
 body section#rewards div{
 	display: flex;
     flex-direction: row;
 	justify-content: space-between;
-	flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 body section#rewards div p{
-	min-width: 25%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
 }
 	
 body section#rewards div h3{
@@ -212,25 +214,29 @@ color: #32CD32;
 }
 
 .commonp{
-	color: #000000;
+	color: #AAAAAA;
 	margin-bottom: 10px;
     font-size: 1.8rem;
+    margin-left: 2.5%;
 }
 
 .rarep{
 	color: #01C2FD;
 	margin-bottom: 10px;
     font-size: 1.8rem;
+    margin-left: 2.5%;
 }
 
 .epicp{
 	color: #FE01FE;
 	margin-bottom: 10px;
     font-size: 1.8rem;
+    margin-left: 2.5%;
 }
 
 .legendaryp{
 	color: #FF9C1E;
 	margin-bottom: 10px;
     font-size: 1.8rem;
+    margin-left: 2.5%;
 }

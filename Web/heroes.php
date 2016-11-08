@@ -18,14 +18,12 @@
     </header>
     <body>
         <?php
-
-            foreach (heroes()->data as $hero){
+            foreach (sqlSelectHeroes() as $hero){
                 echo '<div>
-                          <a href="hero.php?id=' . $hero->id . '"><div class="heroes">' . $hero->name . '</div></a>
-                          <p>' . $hero->description . '</p>
+                          <a href="hero.php?id=' . $hero['id_hero'] . '"><div class="heroes">' . $hero['name'] . '</div></a>
+                          <p>' . $hero['description'] . '</p>
                       </div>';
             }
-
         ?>
     </body>
 </html>

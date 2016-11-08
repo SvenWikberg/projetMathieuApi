@@ -18,29 +18,32 @@
     </header>
     <body>
 		<section id="lore">
-			<?php $hero = hero($_GET['id']); ?>
-				
+
+			<?php $hero = sqlSelectHeroById($_GET['id'])[0]; ?>
+
 			<div id="name">
-				<h1><?php echo $hero->name ?></h1>
-				<h2><?php echo $hero->real_name ?></h2>
+				<h1><?php echo $hero['name'] ?></h1>
+				<h2><?php echo $hero['real_name'] ?></h2>
 			</div>
 				
 			<div id="info">
-				<p>Affiliation : <?php echo (empty($hero->affiliation))?'None':$hero->affiliation ?></p>
-				<p>Base Of Operations : <?php echo (empty($hero->base_of_operations))?'None':$hero->base_of_operations ?></p>
+				<p>Affiliation : <?php echo (empty($hero['affiliation']))?'None':$hero['affiliation'] ?></p>
+				<p>Base Of Operations : <?php echo (empty($hero['base_of_operations']))?'None':$hero['base_of_operations'] ?></p>
 			</div>
 		</section>
 		
 		<section id="game">
 			<div id="role">
-				<p>Role : <?php echo $hero->role->name ?></p>
+				<p>Role : <?php print_r(sqlSelectRoleById($hero['id_role'])[0]['name']); ?></p>
 				<?php
-					if(!empty($hero->sub_roles))
+					$sub_roles = sqlSelectSubRolesByIdHero($hero['id_hero']);
+
+					if(!empty($sub_roles))
 					{
 						echo '<p>Sub-Role : ';
-						foreach($hero->sub_roles as $subRole)
+						foreach($sub_roles as $subRole)
 						{
-							echo ($subRole->id == count($hero->sub_roles) + 1)?$subRole->name:$subRole->name . ', ';
+							echo ($subRole == end($sub_roles))?$subRole['name']:$subRole['name'] . ', ';
 						}
 						echo '</p>';
 					}
@@ -49,20 +52,20 @@
 
 			<div id="stats">
 				<div>
-					<p id="life"><?php echo $hero->health ?></p>
+					<p id="life"><?php echo $hero['health'] ?></p>
 					<img src="img/heart.png" alt="Life">
 				</div>
 				<div>
-					<p id="armor"><?php echo $hero->armour ?></p>
+					<p id="armor"><?php echo $hero['armour'] ?></p>
 					<img src="img/armor.png" alt="Armor">
 				</div>
 				<div>
-				<p id="shield"><?php echo $hero->shield ?></p>
+				<p id="shield"><?php echo $hero['shield'] ?></p>
 				<img src="img/shield.png" alt="Shield">
 				</div>
 				<div>
 				<?php
-					for ($i = 1; $i <= $hero->difficulty; $i++) {
+					for ($i = 1; $i <= $hero['difficulty']; $i++) {
 					echo '<img src="img/star.png" alt="Difficulty">';
 					} 
 				?>
@@ -75,11 +78,12 @@
 			<h1>Abilities</h1>
 			<div>
 				<?php
-					foreach($hero->abilities as $ability)
+				$abilities = sqlSelectAbilitiesByIdHero($_GET['id']);
+					foreach($abilities as $ability)
 						{
 							echo '<div>';
-							echo 	'<h2>' . $ability->name . '</h2>';
-							echo 	'<p>' . $ability->description . '</p>';
+							echo 	'<h2>' . $ability['name'] . '</h2>';
+							echo 	'<p>' . $ability['description'] . '</p>';
 							echo '</div>';
 						} 
 				?>
@@ -91,71 +95,76 @@
 			<?php
 
 			$skinTab = [
-				'title' => '<h2>Skins</h2>',
-				'common' => '<p class="commonp">Common</p><div class="common">',
-				'rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+				'Title' => '<h2>Skins</h2>',
+				'Common' => '<p class="commonp">Common</p><div class="common">',
+				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
 			];
 			$introTab = [
-				'title' => '<h2>Highlight Intros</h2>',
-				'common' => '<p class="commonp">Common</p><div class="common">',
-				'rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+				'Title' => '<h2>Highlight Intros</h2>',
+				'Common' => '<p class="commonp">Common</p><div class="common">',
+				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
 			];
 			$emoteTab = [
-				'title' => '<h2>Emotes</h2>',
-				'common' => '<p class="commonp">Common</p><div class="common">',
-				'rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+				'Title' => '<h2>Emotes</h2>',
+				'Common' => '<p class="commonp">Common</p><div class="common">',
+				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
 			];
 			$poseTab = [
-				'title' => '<h2>Victory Poses</h2>',
-				'common' => '<p class="commonp">Common</p><div class="common">',
-				'rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+				'Title' => '<h2>Victory Poses</h2>',
+				'Common' => '<p class="commonp">Common</p><div class="common">',
+				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
 			];
 			$sprayTab = [
-				'title' => '<h2>Sprays</h2>',
-				'common' => '<p class="commonp">Common</p><div class="common">',
-				'rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+				'Title' => '<h2>Sprays</h2>',
+				'Common' => '<p class="commonp">Common</p><div class="common">',
+				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
 			];
 			$voiceTab = [
-				'title' => '<h2>Voice Lines</h2>',
-				'common' => '<p class="commonp">Common</p><div class="common">',
-				'rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
+				'Title' => '<h2>Voice Lines</h2>',
+				'Common' => '<p class="commonp">Common</p><div class="common">',
+				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
+				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
+				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
 			];
 
 
 			$rewardTab = [
-				'skin' => $skinTab,
-				'highlight intro' => $introTab,
-				'emote' => $emoteTab,
-				'victory pose' => $poseTab,
-				'spray' => $sprayTab,
-				'voice line' => $voiceTab
+				'Skin' => $skinTab,
+				'Highlight Intro' => $introTab,
+				'Emote' => $emoteTab,
+				'Victory Pose' => $poseTab,
+				'Spray' => $sprayTab,
+				'Voice Line' => $voiceTab
 			];
 
-				foreach($hero->rewards as $reward)
-				{
-					$rewardTab[$reward->type->name][$reward->quality->name] .= '<p>' . $reward->name . '</p>';
-				} 
+			$rewards = sqlSelectRewardsByIdHero($_GET['id']);
+			$rewardTypes = sqlSelectRewardTypes();
+			$qualities = sqlSelectQualities();
+
+			foreach($rewards as $reward) // ajoute les rewards du hero dans les bons type et qualité de reward
+			{             //nom du type de rewards (id du tableau associatif)  //nom de la qualité de la rewards (id du tableau associatif -> 2eme degre)
+				$rewardTab[$rewardTypes[$reward['id_reward_type'] - 1]['name']][$qualities[$reward['id_quality'] - 1]['name']] .= '<p>' . $reward['name'] . '</p>';
+			} 
 				
-				foreach($rewardTab as $tab){
-					foreach($tab as $itemQuality){
-						if($itemQuality[strlen($itemQuality) - 2] == 'p' || $itemQuality[strlen($itemQuality) - 2] == '2'){ //si l'avant dernier caractere est un 'p' ou un '2' ça veut dire qu'on a ajouté une reward dans ce string donc on l'affiche
-								$itemQuality .= '</div>';
-								echo $itemQuality;
-						}
+			foreach($rewardTab as $tab){
+				$lnMaxItems = 0;
+				foreach($tab as $itemQuality){
+					if($itemQuality[strlen($itemQuality) - 2] == 'p' || $itemQuality[strlen($itemQuality) - 2] == '2'){ //si l'avant dernier caractere est un 'p' ou un '2' ça veut dire qu'on a ajouté une reward dans ce string donc on l'affiche
+						$itemQuality .= '</div>';
+						echo $itemQuality;
 					}
 				}
+			}
 			?>
 			<section id="skin">
 			</section>

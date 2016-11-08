@@ -26,7 +26,7 @@ header ul{
     align-items: center;
     flex-wrap: wrap;
     background-color: #AAAAAA;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 header ul li img{

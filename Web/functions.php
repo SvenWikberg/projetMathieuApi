@@ -1,4 +1,5 @@
 <?php
+////////////////Overwatch-APi
     function heroes(){
         $ch = curl_init('https://overwatch-api.net/api/v1/hero');
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -9,7 +10,7 @@
 		return $result;
     }
 
-        function events(){
+    function events(){
         $ch = curl_init('https://overwatch-api.net/api/v1/event');
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -48,8 +49,10 @@
         $result = json_decode($result);
 		return $result;
     }
+////////////////
 
-    function bddPdo() {
+////////////////Bdd local
+    function &bddPdo() {
         $myPdo = null;
 
         try {
@@ -63,4 +66,53 @@
             echo 'Erreur : ' . $ex;
         }
     }
+
+    function sqlSelectHeroes() {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM heroes')->fetchAll();
+        return $reqArray;
+    }
+
+    function sqlSelectRewardTypes() {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM reward_types')->fetchAll();
+        return $reqArray;
+    }
+
+    function sqlSelectQualities() {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM qualities')->fetchAll();
+        return $reqArray;
+    }
+
+    function sqlSelectHeroById($id) {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM heroes WHERE id_hero = ' . $id)->fetchAll();
+        return $reqArray;
+    }
+
+    function sqlSelectRoleById($id) {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM roles WHERE id_role = ' . $id)->fetchAll();
+        return $reqArray;
+    }
+
+    function sqlSelectSubRolesByIdHero($id) {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT sub_roles.id_sub_role as id, sub_roles.name as name FROM sub_roles JOIN heroes_sub_roles ON heroes_sub_roles.id_sub_role = sub_roles.id_sub_role JOIN heroes ON heroes.id_hero = heroes_sub_roles.id_hero WHERE heroes.id_hero = ' . $id)->fetchAll();
+        return $reqArray;
+    }
+
+    function sqlSelectAbilitiesByIdHero($id) {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM abilities WHERE id_hero = ' . $id)->fetchAll();
+        return $reqArray;
+    }
+
+    function sqlSelectRewardsByIdHero($id) {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_hero = ' . $id)->fetchAll();
+        return $reqArray;
+    }
+////////////////
 ?>
