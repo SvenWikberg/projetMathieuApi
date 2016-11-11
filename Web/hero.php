@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Titre de la page</title>
         <link rel="stylesheet" href="style-hero.css">
-        <script src="script.js"></script>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
     <?php
         include_once("functions.php");
@@ -153,7 +153,7 @@
 
 			foreach($rewards as $reward) // ajoute les rewards du hero dans les bons type et qualité de reward
 			{             //nom du type de rewards (id du tableau associatif)  //nom de la qualité de la rewards (id du tableau associatif -> 2eme degre)
-				$rewardTab[$rewardTypes[$reward['id_reward_type'] - 1]['name']][$qualities[$reward['id_quality'] - 1]['name']] .= '<p>' . $reward['name'] . '</p>';
+				$rewardTab[$rewardTypes[$reward['id_reward_type'] - 1]['name']][$qualities[$reward['id_quality'] - 1]['name']] .= '<p class="rewardp">' . $reward['name'] . '</p>';
 			} 
 				
 			foreach($rewardTab as $tab){
@@ -167,6 +167,17 @@
 			}
 			?>
 		</section>
+		<script>
+			$("section#rewards p.rewardp").click(function() {
+				$( this ).css('color', '#00FF4C');
+				/*$.ajax({
+					url: 'test.php',
+					success: function(data) {
+						alert('Directory created');
+					}
+				});*/
+			});
+		</script>
     </body>
 </html>
 

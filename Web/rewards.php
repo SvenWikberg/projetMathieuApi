@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Titre de la page</title>
         <link rel="stylesheet" href="style-rewards.css">
-        <script src="script.js"></script>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
     <?php
         include_once("functions.php");
@@ -37,5 +37,10 @@
                 ?>
             </div>
         </section>
+		<script>
+			$( "p" ).click(function() {
+				$( this ).css('color', '#00FF4C');
+			});
+		</script>
     </body>
 </html>
