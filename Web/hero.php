@@ -153,7 +153,7 @@
 
 			foreach($rewards as $reward) // ajoute les rewards du hero dans les bons type et qualité de reward
 			{             //nom du type de rewards (id du tableau associatif)  //nom de la qualité de la rewards (id du tableau associatif -> 2eme degre)
-				$rewardTab[$rewardTypes[$reward['id_reward_type'] - 1]['name']][$qualities[$reward['id_quality'] - 1]['name']] .= '<p class="rewardp">' . $reward['name'] . '</p>';
+				$rewardTab[$rewardTypes[$reward['id_reward_type'] - 1]['name']][$qualities[$reward['id_quality'] - 1]['name']] .= '<p class="rewardp">' . $reward['name'] . '<var hidden>' . $reward['id_reward'] . '</var></p>';
 			} 
 				
 			foreach($rewardTab as $tab){
@@ -165,17 +165,20 @@
 					}
 				}
 			}
-			?>
+			?>			
 		</section>
 		<script>
 			$("section#rewards p.rewardp").click(function() {
-				$( this ).css('color', '#00FF4C');
-				/*$.ajax({
+				id_reward = $(this).find("var").html();
+				$.ajax({
+					method: 'POST',
 					url: 'test.php',
+					data: {'id_user': 2, 'id_reward': parseInt(id_reward)},
+					dataType: 'json',
 					success: function(data) {
-						alert('Directory created');
 					}
-				});*/
+				});
+				$( this ).css('color', '#00FF4C');
 			});
 		</script>
     </body>
