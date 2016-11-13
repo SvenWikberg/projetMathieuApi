@@ -25,4 +25,7 @@
 				echo '{ "ReturnCode": "ERROR", "Message": "Non-Valid ID"}';
 			}
 			break;
+		case "logout":
+			session_destroy();
+			break;
 		}

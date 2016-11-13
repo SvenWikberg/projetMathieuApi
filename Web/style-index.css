@@ -16,6 +16,13 @@ body{
     background-color: #FAFAFA;
 }
 
+body h1{
+    font-style: italic;
+    font-weight: normal;
+    font-size: 3rem;
+    color: #FF9C1E;
+}
+
 header ul{
     margin: 0px;
     padding: 20px;
@@ -47,6 +54,14 @@ a {
     text-decoration: none;
 }
 
+p{
+    margin-top: 0px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    text-align: justify;
+    color: #4A4C4E
+}
 
 
 

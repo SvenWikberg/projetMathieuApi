@@ -133,6 +133,12 @@
         $reqArray = $reqArray[0];
         return $reqArray;
     }
+
+    function sqlSelectIdRewardByIdUser($id){
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM users_rewards WHERE id_user = ' . $id)->fetchAll();
+        return $reqArray;
+    }
 ////////////////
 
     function print_rr($item) {

@@ -3,6 +3,8 @@
     <?php
         session_start();
         include_once("functions.php");
+
+		$rewards_owned = sqlSelectIdRewardByIdUser($_SESSION['id_user']);
     ?>
     <head>
         <meta charset="utf-8">
@@ -15,7 +17,13 @@
             <li><a href="index.php"><img src="img/logo.png" alt="Logo" id="logo"></a></li>
             <li class="navName"><a href="heroes.php"><h2>Heroes</h2></a></li>
             <li class="navName"><a href="rewards.php"><h2>Rewards</h2></a></li>
-			<li class="navName"><a href="login.php"><h2>Login</h2></a></li>
+            <?php
+            if(isset($_SESSION['id_user'])){
+			echo '<li class="navName"><a href="account.php"><h2>Account</h2></a></li>';
+            }else{
+			echo '<li class="navName"><a href="login.php"><h2>Login</h2></a></li>';
+            }
+            ?>
         </ul>
     </header>
     <body>
@@ -153,9 +161,15 @@
 			$rewardTypes = sqlSelectRewardTypes();
 			$qualities = sqlSelectQualities();
 
-			foreach($rewards as $reward) // ajoute les rewards du hero dans les bons type et qualité de reward
-			{             //nom du type de rewards (id du tableau associatif)  //nom de la qualité de la rewards (id du tableau associatif -> 2eme degre)
-				$rewardTab[$rewardTypes[$reward['id_reward_type'] - 1]['name']][$qualities[$reward['id_quality'] - 1]['name']] .= '<p class="rewardp">' . $reward['name'] . '<var hidden>' . $reward['id_reward'] . '</var></p>';
+			foreach($rewards as $reward){// ajoute les rewards du hero dans les bons type et qualité de reward
+			    $check = '';
+				foreach($rewards_owned as $id_reward){
+					if($id_reward['id_reward'] == $reward['id_reward']){
+						$check = ' style="color: #00FF4C"';
+					}
+				}         
+				//nom du type de rewards (id du tableau associatif)  //nom de la qualité de la rewards (id du tableau associatif -> 2eme degre)
+				$rewardTab[$rewardTypes[$reward['id_reward_type'] - 1]['name']][$qualities[$reward['id_quality'] - 1]['name']] .= '<p ' . $check . ' class="rewardp">' . $reward['name'] . '<var hidden>' . $reward['id_reward'] . '</var></p>';
 			} 
 				
 			foreach($rewardTab as $tab){
@@ -172,12 +186,14 @@
 		<script>
 			$("section#rewards p.rewardp").click(function() {
 				id_reward = $(this).find("var").html();
+                id_user = '<?php echo $_SESSION['id_user']; ?>';
+
 				$.ajax({
 					method: 'POST',
 					url: 'functions.ajax.php',
-					data: {'id_user': 2, 'id_reward': parseInt(id_reward), 'function_name': 'insert_users_rewards'},
+					data: {'id_user': id_user, 'id_reward': parseInt(id_reward), 'function_name': 'insert_users_rewards'},
 					dataType: 'json',
-					complete : function(data) {
+					success : function(data) {
 					}
 				});
 				$( this ).css('color', '#00FF4C');

@@ -3,6 +3,8 @@
     <?php
         session_start();
         include_once("functions.php");
+
+        $rewards_owned = sqlSelectIdRewardByIdUser($_SESSION['id_user']);
     ?>
     <head>
         <meta charset="utf-8">
@@ -15,7 +17,13 @@
             <li><a href="index.php"><img src="img/logo.png" alt="Logo" id="logo"></a></li>
             <li class="navName"><a href="heroes.php"><h2>Heroes</h2></a></li>
             <li class="navName"><a href="rewards.php"><h2>Rewards</h2></a></li>
-			<li class="navName"><a href="login.php"><h2>Login</h2></a></li>
+            <?php
+            if(isset($_SESSION['id_user'])){
+			    echo '<li class="navName"><a href="account.php"><h2>Account</h2></a></li>';
+            }else{
+			    echo '<li class="navName"><a href="login.php"><h2>Login</h2></a></li>';
+            }
+            ?>
         </ul>
     </header>
     <body>
@@ -24,7 +32,13 @@
             <div>
                 <?php
                     foreach(sqlSelectPlayerIcons() as $playerIcon){
-                        echo '<p class="rewardp">' . $playerIcon['name'] . '<var hidden>' . $playerIcon['id_reward'] . '</var></p>';
+                    $check = '';
+                        foreach($rewards_owned as $id_reward){
+                            if($id_reward['id_reward'] == $playerIcon['id_reward']){
+                                $check = ' style="color: #00FF4C"';
+                            }
+                        }
+                        echo '<p ' . $check . ' class="rewardp">' . $playerIcon['name'] . '<var hidden>' . $playerIcon['id_reward'] . '</var></p>';
                     }
                 ?>
             </div>
@@ -34,7 +48,13 @@
             <div>
                 <?php
                     foreach(sqlSelectSprays() as $sprays){
-                        echo '<p class="rewardp">' . $sprays['name'] . '<var hidden>' . $sprays['id_reward'] . '</var></p>';
+                        $check = '';
+                        foreach($rewards_owned as $id_reward){
+                            if($id_reward['id_reward'] == $sprays['id_reward']){
+                                $check = ' style="color: #00FF4C"';
+                            }
+                        }
+                        echo '<p ' . $check . ' class="rewardp">' . $sprays['name'] . '<var hidden>' . $sprays['id_reward'] . '</var></p>';
                     }
                 ?>
             </div>
@@ -42,10 +62,12 @@
 		<script>
 			$("p.rewardp").click(function() {
 				id_reward = $(this).find("var").html();
+                id_user = '<?php echo $_SESSION['id_user']; ?>';
+
 				$.ajax({
 					method: 'POST',
 					url: 'functions.ajax.php',
-					data: {'id_user': 2, 'id_reward': parseInt(id_reward), 'function_name': 'insert_users_rewards'},
+					data: {'id_user': id_user, 'id_reward': parseInt(id_reward), 'function_name': 'insert_users_rewards'},
 					dataType: 'json',
 					success: function(data) {
 					}
@@ -53,5 +75,8 @@
 				$( this ).css('color', '#00FF4C');
 			});
 		</script>
+        <?php
+        print_rr($rewards_owned);
+        ?>
     </body>
 </html>

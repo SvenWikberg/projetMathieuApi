@@ -40,7 +40,7 @@
                     success : function(data) {
                         if (data.ReturnCode == "OK"){
                             $("#message").text(data.Message);
-                            window.location.href = "index.php";
+                            window.location.href = "account.php";
                         }
                         else if (data.ReturnCode == "ERROR"){
                             $("#message").text('Username or password incorrect');
