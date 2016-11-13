@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 08 Novembre 2016 à 16:36
+-- Généré le :  Dim 13 Novembre 2016 à 23:08
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -2117,8 +2117,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(25) CHARACTER SET utf8 NOT NULL,
   `password` varchar(100) CHARACTER SET utf8 NOT NULL,
   `email` varchar(100) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id_user`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `username_2` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id_user`, `username`, `password`, `email`) VALUES
+(1, 'sven', '1234', 'svenwikberg@gmail.com'),
+(2, 'swagman', '2345', 'swagmn@email.com');
 
 -- --------------------------------------------------------
 
@@ -2131,6 +2141,31 @@ CREATE TABLE IF NOT EXISTS `users_rewards` (
   `id_reward` int(11) NOT NULL,
   PRIMARY KEY (`id_user`,`id_reward`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `users_rewards`
+--
+
+INSERT INTO `users_rewards` (`id_user`, `id_reward`) VALUES
+(1, 1),
+(1, 2),
+(1, 836),
+(1, 837),
+(1, 840),
+(1, 841),
+(1, 846),
+(1, 851),
+(1, 1135),
+(1, 1136),
+(1, 1137),
+(1, 1138),
+(1, 1223),
+(2, 842),
+(2, 847),
+(2, 852),
+(2, 1140),
+(2, 1141),
+(2, 1142);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
