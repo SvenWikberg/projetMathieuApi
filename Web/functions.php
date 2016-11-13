@@ -126,5 +126,18 @@
         $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_reward_type = 1 AND id_hero IS NULL')->fetchAll();
         return $reqArray;
     }
+
+    function sqlSelectUserByUsername($user_name) {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM users WHERE username = "' . $user_name . '"')->fetchAll();
+        $reqArray = $reqArray[0];
+        return $reqArray;
+    }
 ////////////////
+
+    function print_rr($item) {
+        echo '<pre>';
+        print_r($item);
+        echo '</pre>';
+    }
 ?>
