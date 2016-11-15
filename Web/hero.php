@@ -4,7 +4,8 @@
         session_start();
         include_once("functions.php");
 
-		$rewards_owned = sqlSelectIdRewardByIdUser($_SESSION['id_user']);
+		if(isset($_SESSION['id_user']))
+			$rewards_owned = sqlSelectIdRewardByIdUser($_SESSION['id_user']);
     ?>
     <head>
         <meta charset="utf-8">
@@ -163,11 +164,12 @@
 
 			foreach($rewards as $reward){// ajoute les rewards du hero dans les bons type et qualité de reward
 			    $check = '';
-				foreach($rewards_owned as $id_reward){
-					if($id_reward['id_reward'] == $reward['id_reward']){
-						$check = ' style="color: #00FF4C"';
-					}
-				}         
+				if(isset($rewards_owned))
+					foreach($rewards_owned as $id_reward){
+						if($id_reward['id_reward'] == $reward['id_reward']){
+							$check = ' style="color: #00FF4C"';
+						}
+					}         
 				//nom du type de rewards (id du tableau associatif)  //nom de la qualité de la rewards (id du tableau associatif -> 2eme degre)
 				$rewardTab[$rewardTypes[$reward['id_reward_type'] - 1]['name']][$qualities[$reward['id_quality'] - 1]['name']] .= '<p ' . $check . ' class="rewardp">' . $reward['name'] . '<var hidden>' . $reward['id_reward'] . '</var></p>';
 			} 

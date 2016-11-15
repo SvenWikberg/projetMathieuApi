@@ -4,7 +4,8 @@
         session_start();
         include_once("functions.php");
 
-        $rewards_owned = sqlSelectIdRewardByIdUser($_SESSION['id_user']);
+        if(isset($_SESSION['id_user']))
+			$rewards_owned = sqlSelectIdRewardByIdUser($_SESSION['id_user']);
     ?>
     <head>
         <meta charset="utf-8">
@@ -33,11 +34,12 @@
                 <?php
                     foreach(sqlSelectPlayerIcons() as $playerIcon){
                     $check = '';
-                        foreach($rewards_owned as $id_reward){
-                            if($id_reward['id_reward'] == $playerIcon['id_reward']){
-                                $check = ' style="color: #00FF4C"';
+                        if(isset($rewards_owned))
+                            foreach($rewards_owned as $id_reward){
+                                if($id_reward['id_reward'] == $playerIcon['id_reward']){
+                                    $check = ' style="color: #00FF4C"';
+                                }
                             }
-                        }
                         echo '<p ' . $check . ' class="rewardp">' . $playerIcon['name'] . '<var hidden>' . $playerIcon['id_reward'] . '</var></p>';
                     }
                 ?>
@@ -49,11 +51,12 @@
                 <?php
                     foreach(sqlSelectSprays() as $sprays){
                         $check = '';
-                        foreach($rewards_owned as $id_reward){
-                            if($id_reward['id_reward'] == $sprays['id_reward']){
-                                $check = ' style="color: #00FF4C"';
+                        if(isset($rewards_owned))
+                            foreach($rewards_owned as $id_reward){
+                                if($id_reward['id_reward'] == $sprays['id_reward']){
+                                    $check = ' style="color: #00FF4C"';
+                                }
                             }
-                        }
                         echo '<p ' . $check . ' class="rewardp">' . $sprays['name'] . '<var hidden>' . $sprays['id_reward'] . '</var></p>';
                     }
                 ?>
