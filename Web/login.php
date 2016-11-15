@@ -20,18 +20,33 @@
     </header>
     <body>
         <section>
-            <form>
-                <p>Username</p>
-                <input type="text" id="user_name"><br>
-                <p>Password</p>
-                <input type="password" id="user_pwd"><br>
-                <br><input type="button" id="send" value="Connect">
-            </form>
+            <div id="connection">
+                <form>
+                    <h1>Login</h1>
+                    <p>Username</p>
+                    <input type="text" id="user_name_l"><br>
+                    <p>Password</p>
+                    <input type="password" id="user_pwd_l"><br>
+                    <br><input type="button" id="login" value="Connect">
+                    <br><br><p id="message_l"></p>
+                </form>
+                <form>
+                    <h1>Register</h1>
+                    <p>Username*</p>
+                    <input type="text" id="user_name_r"><br>
+                    <p>Password*</p>
+                    <input type="password" id="user_pwd_r"><br>
+                    <p>Email*</p>
+                    <input type="email" id="user_email_r"><br>
+                    <br><input type="button" id="register" value="Register">
+                    <br><br><p id="message_r"></p>
+                </form>
+            </div>
         </section>
         <script>
-            $("input#send").click(function() {
-                user_name = $("#user_name").val();
-                user_pwd = $("#user_pwd").val();
+            $("input#login").click(function() {
+                user_name = $("#user_name_l").val();
+                user_pwd = $("#user_pwd_l").val();
                 $.ajax({
                     method: 'POST',
                     url: 'functions.ajax.php',
@@ -39,11 +54,32 @@
                     dataType: 'json',
                     success : function(data) {
                         if (data.ReturnCode == "OK"){
-                            $("#message").text(data.Message);
+                            $("#message_l").text(data.Message);
                             window.location.href = "account.php";
                         }
                         else if (data.ReturnCode == "ERROR"){
-                            $("#message").text('Username or password incorrect');
+                            $("#message_l").text(data.Message);
+                        }
+                    }
+                });
+            });
+
+            $("input#register").click(function() {
+                user_name = $("#user_name_r").val();
+                user_pwd = $("#user_pwd_r").val();
+                email = $("#user_email_r").val();
+
+                $.ajax({
+                    method: 'POST',
+                    url: 'functions.ajax.php',
+                    data: {'user_name': user_name, 'user_pwd': user_pwd, 'email': email, 'function_name': 'register'},
+                    dataType: 'json',
+                    success : function(data) {
+                        if (data.ReturnCode == "OK"){
+                            window.location.href = "account.php";
+                        }
+                        else if (data.ReturnCode == "ERROR"){
+                            $("#message_r").text(data.Message);
                         }
                     }
                 });
@@ -51,7 +87,7 @@
         </script>
         <p id="message"></p>
         <?php
-        //print_rr(sqlSelectUserByUsername('sven')['username']);
+
         ?>
     </body>
 </html>

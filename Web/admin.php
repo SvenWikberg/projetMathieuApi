@@ -19,6 +19,6 @@
         </ul>
     </header>
     <body>
-        <a href="dbsync.php">Remplissage heroes</a>
+        <a href="dbsync.php"><h1>Remplissage bdd</h1></a>
     </body>
 </html>

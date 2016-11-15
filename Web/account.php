@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <title>Titre de la page</title>
-        <link rel="stylesheet" href="style-index.css">
+        <link rel="stylesheet" href="style-account.css">
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
     <header>
@@ -19,9 +19,47 @@
         </ul>
     </header>
     <body>
-        <?php
-        print_rr($_SESSION);
-        ?>
+        <section id="statistics">
+            <div id="rewards">
+                <?php
+                    $reward_count = sqlSelectRewardCount();
+                    $reward_owned_count = sqlSelectRewardCountByIdUser($_SESSION['id_user']);
+
+                    $ratio = $reward_owned_count / $reward_count * 100;
+                ?>
+                <h3>Rewards, <?php echo $reward_owned_count . '/' . $reward_count; ?></h3>
+            
+                <div style="width: 100%; height: 25px; border: 2px solid #01C2FD; border-radius: 5px;">
+                    <?php
+                        echo '<div style="width: ' . $ratio . '% ;height: 25px ;background-color: #01C2FD;"></div>'
+                    ?>  
+                </div>
+            </div>
+
+            <div id="events_rewards">
+                <?php
+                foreach(sqlSelectEvents() as $event){
+                    echo '<div style="width: 45%;">';
+
+                    $reward_count_e = sqlSelectRewardCountByIdEvent($event['id_event']);
+                    $reward_owned_count_e = sqlSelectRewardCountByIdEventIdUser($event['id_event'], $_SESSION['id_user']);
+
+                    $ratio_e = $reward_owned_count_e / $reward_count_e * 100;
+
+                    echo '<h3>' . $event['name'] . ', ' . $reward_owned_count_e . '/' . $reward_count_e . '</h3>';
+                ?>            
+                <div style="width: 100%; height: 25px; border: 2px solid #000000; border-radius: 5px;">
+                <?php
+                        echo '<div style="width: ' . $ratio_e . '% ;height: 25px ;background-color: #000000;"></div>'
+                ?>  
+                </div>
+
+                <?php
+                    echo '</div>';
+                }
+                ?>
+            </div>
+        </section>
         <script>
 			$("#logout").click(function() {
 				$.ajax({

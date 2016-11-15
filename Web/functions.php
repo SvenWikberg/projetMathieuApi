@@ -67,6 +67,12 @@
         }
     }
 
+    function sqlSelectEvents() {
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT * FROM events')->fetchAll();
+        return $reqArray;
+    }
+
     function sqlSelectHeroes() {
         $myPDO = bddPdo();
         $reqArray = $myPDO->query('SELECT * FROM heroes')->fetchAll();
@@ -117,20 +123,19 @@
 
     function sqlSelectPlayerIcons(){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_reward_type = 3')->fetchAll();
+        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_reward_type = 3 ORDER BY name ASC')->fetchAll();
         return $reqArray;
     }
 
     function sqlSelectSprays(){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_reward_type = 1 AND id_hero IS NULL')->fetchAll();
+        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_reward_type = 1 AND id_hero IS NULL ORDER BY name ASC')->fetchAll();
         return $reqArray;
     }
 
     function sqlSelectUserByUsername($user_name) {
         $myPDO = bddPdo();
         $reqArray = $myPDO->query('SELECT * FROM users WHERE username = "' . $user_name . '"')->fetchAll();
-        $reqArray = $reqArray[0];
         return $reqArray;
     }
 
@@ -138,6 +143,36 @@
         $myPDO = bddPdo();
         $reqArray = $myPDO->query('SELECT * FROM users_rewards WHERE id_user = ' . $id)->fetchAll();
         return $reqArray;
+    }
+
+    function sqlInsertUser($user_name, $user_pwd, $email){
+        $myPDO = bddPdo();
+        $myPDO->query('INSERT INTO users VALUES (NULL, "' . $user_name . '", "' . $user_pwd . '", "' . $email . '")');
+        $_SESSION['id_user'] = $myPDO->lastInsertId();
+    }
+
+    function sqlSelectRewardCountByIdUser($id){
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT COUNT(DISTINCT id_reward) FROM users_rewards WHERE id_user = ' . $id)->fetchAll();
+        return $reqArray[0][0];
+    }   
+
+    function sqlSelectRewardCount(){
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT COUNT(DISTINCT id_reward) FROM rewards')->fetchAll();
+        return $reqArray[0][0];
+    } 
+
+    function sqlSelectRewardCountByIdEvent($id){
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT COUNT(DISTINCT id_reward) FROM rewards WHERE id_event = ' . $id)->fetchAll();
+        return $reqArray[0][0];
+    }
+
+    function sqlSelectRewardCountByIdEventIdUser($idEvent, $idUser){
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT COUNT(DISTINCT rewards.id_reward) FROM rewards JOIN users_rewards ON rewards.id_reward = users_rewards.id_reward WHERE id_event = ' . $idEvent . ' AND id_user = ' . $idUser)->fetchAll();
+        return $reqArray[0][0];
     }
 ////////////////
 

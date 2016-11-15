@@ -79,7 +79,7 @@
 			});
 		</script>
         <?php
-        print_rr($rewards_owned);
+        //print_rr($rewards_owned);
         ?>
     </body>
 </html>

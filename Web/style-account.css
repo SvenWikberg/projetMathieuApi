@@ -8,29 +8,6 @@
     src: url('font/big_noodle_titling_oblique.ttf');
 }
 
-body{
-    font-family: "BigNoodle", Helvetica, Arial, sans-serif;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FAFAFA;
-}
-
-body h1{
-    font-style: italic;
-    font-weight: normal;
-    font-size: 3rem;
-    color: #FF9C1E;
-}
-
-body section div#connection{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-
 header ul{
     margin: 0px;
     padding: 20px;
@@ -58,6 +35,31 @@ header ul li a:hover{
     color: #4A4C4E;
 }
 
+body{
+    font-family: "BigNoodle", Helvetica, Arial, sans-serif;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FAFAFA;
+}
+
+body h1{
+    font-style: italic;
+    font-weight: normal;
+    font-size: 3rem;
+    color: #FF9C1E;
+}
+
+body section#statistics div#rewards h3{
+    color: #01C2FD;
+}
+
+body section#statistics div#events_rewards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;}
+
 a {
     text-decoration: none;
 }
@@ -69,6 +71,14 @@ p{
     font-size: 1.5rem;
     text-align: justify;
     color: #4A4C4E
+}
+
+h3{
+    margin-bottom: 0px;
+    margin-top: 40px;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 2rem;
 }
 
 
