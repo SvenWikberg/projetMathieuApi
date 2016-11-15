@@ -20,6 +20,7 @@
     </header>
     <body>
         <section id="statistics">
+            <h1>Your stats:</h1>
             <div id="rewards">
                 <?php
                     $reward_count = sqlSelectRewardCount();
