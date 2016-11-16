@@ -211,6 +211,7 @@
 			$("section#rewards p.rewardp").click(function() {
 				id_reward = $(this).find("var").html();
                 id_user = '<?php echo $_SESSION['id_user']; ?>';
+				this_p = this;
 
 				$.ajax({
 					method: 'POST',
@@ -218,11 +219,15 @@
 					data: {'id_user': id_user, 'id_reward': parseInt(id_reward), 'function_name': 'insert_users_rewards'},
 					dataType: 'json',
 					success : function(data) {
+						$(this_p).css('color', '#00FF4C');
+					},
+					error : function(data) {
+						$('#error').text(data);
 					}
 				});
-				$( this ).css('color', '#00FF4C');
 			});
 		</script>
+		<p id="error"></p>
     </body>
 </html>
 

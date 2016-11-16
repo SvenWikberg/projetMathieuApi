@@ -52,6 +52,7 @@ body div{
 }
 
 body div h2{
+    margin-bottom: 0px;
     font-style: italic;
     font-weight: normal;
     font-size: 2rem;

@@ -174,6 +174,11 @@
         $reqArray = $myPDO->query('SELECT COUNT(DISTINCT rewards.id_reward) FROM rewards JOIN users_rewards ON rewards.id_reward = users_rewards.id_reward WHERE id_event = ' . $idEvent . ' AND id_user = ' . $idUser)->fetchAll();
         return $reqArray[0][0];
     }
+
+    function sqlInsertUserReward($id_user, $id_reward){
+        $myPDO = bddPdo();
+        $myPDO->query('INSERT INTO users_rewards VALUES (' . $id_user . ', ' . $id_reward . ')');
+    }
 ////////////////
 
     function print_rr($item) {
