@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 15 Novembre 2016 à 13:47
+-- Généré le :  Mer 16 Novembre 2016 à 16:00
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -2120,14 +2120,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `username_2` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `users`
 --
 
 INSERT INTO `users` (`id_user`, `username`, `password`, `email`) VALUES
-(7, 'sven', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'svenwikberg@gmail.com');
+(7, 'sven', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'svenwikberg@gmail.com'),
+(16, 'test1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'qwe@qwe.ch');
 
 -- --------------------------------------------------------
 
@@ -2147,56 +2148,21 @@ CREATE TABLE IF NOT EXISTS `users_rewards` (
 --
 
 INSERT INTO `users_rewards` (`id_user`, `id_reward`) VALUES
-(7, 836),
-(7, 837),
-(7, 838),
-(7, 841),
-(7, 842),
-(7, 843),
-(7, 851),
-(7, 852),
-(7, 857),
-(7, 858),
-(7, 869),
-(7, 879),
-(7, 890),
-(7, 897),
-(7, 901),
-(7, 902),
-(7, 903),
-(7, 904),
-(7, 905),
-(7, 906),
-(7, 907),
-(7, 908),
-(7, 909),
-(7, 931),
-(7, 932),
-(7, 933),
-(7, 934),
-(7, 935),
-(7, 953),
-(7, 1230),
+(16, 4),
+(16, 5),
+(16, 8),
+(16, 9),
+(16, 10),
+(16, 11),
+(16, 29),
+(7, 1225),
+(7, 1226),
+(7, 1229),
 (7, 1231),
 (7, 1232),
-(7, 1239),
-(7, 1240),
-(7, 1516),
-(7, 1517),
-(7, 1518),
-(7, 1519),
-(7, 1520),
-(7, 1575),
-(7, 1576),
-(7, 1587),
-(7, 1590),
-(7, 1591),
-(7, 1634),
-(7, 1635),
-(7, 1678),
-(7, 1679),
-(7, 1680),
-(7, 1681);
+(16, 1656),
+(16, 1657),
+(16, 1660);
 
 --
 -- Contraintes pour les tables exportées
@@ -2206,8 +2172,8 @@ INSERT INTO `users_rewards` (`id_user`, `id_reward`) VALUES
 -- Contraintes pour la table `users_rewards`
 --
 ALTER TABLE `users_rewards`
-  ADD CONSTRAINT `users_rewards_ibfk_2` FOREIGN KEY (`id_reward`) REFERENCES `rewards` (`id_reward`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `users_rewards_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `users_rewards_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `users_rewards_ibfk_2` FOREIGN KEY (`id_reward`) REFERENCES `rewards` (`id_reward`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

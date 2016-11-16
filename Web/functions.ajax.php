@@ -9,7 +9,6 @@
 			$id_reward = $_POST['id_reward'];
 
 			sqlInsertUserReward($id_user, $id_reward);
-
 			echo '{ "ReturnCode": "OK", "Message": "Data added"}';
 			break;
 		case "check_login":

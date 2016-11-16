@@ -179,6 +179,14 @@
         $myPDO = bddPdo();
         $myPDO->query('INSERT INTO users_rewards VALUES (' . $id_user . ', ' . $id_reward . ')');
     }
+
+    function sqlSelectIdRewardByIdUserIdReward($id_user, $id_reward){
+        $myPDO = bddPdo();
+        $reqArray = $myPDO->query('SELECT id_reward FROM users_rewards WHERE id_user = ' . $id_user . ' AND id_reward = ' . $id_reward)->fetchAll();
+        return $reqArray;
+    }   
+
+
 ////////////////
 
     function print_rr($item) {

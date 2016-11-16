@@ -220,14 +220,19 @@
 					dataType: 'json',
 					success : function(data) {
 						$(this_p).css('color', '#00FF4C');
+						$("#error").text(data.ReturnCode);
 					},
 					error : function(data) {
-						$('#error').text(data);
+						$('#error').text(data.ReturnCode);
 					}
 				});
 			});
 		</script>
 		<p id="error"></p>
+		<?php
+		print_rr(sqlSelectIdRewardByIdUserIdReward(1,5));
+
+		?>
     </body>
 </html>
 
