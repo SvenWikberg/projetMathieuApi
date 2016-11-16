@@ -6,7 +6,7 @@
     ?>
     <head>
         <meta charset="utf-8">
-        <title>Titre de la page</title>
+        <title>Overwatch Collection</title>
         <link rel="stylesheet" href="style-index.css">
         <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
     </head>

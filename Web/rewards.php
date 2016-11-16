@@ -9,7 +9,7 @@
     ?>
     <head>
         <meta charset="utf-8">
-        <title>Titre de la page</title>
+        <title>Overwatch Collection</title>
         <link rel="stylesheet" href="style-rewards.css">
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>

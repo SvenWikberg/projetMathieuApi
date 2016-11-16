@@ -6,7 +6,7 @@
     ?>
     <head>
         <meta charset="utf-8">
-        <title>Titre de la page</title>
+        <title>Overwatch Collection</title>
         <link rel="stylesheet" href="style-heroes.css">
         <script src="script.js"></script>
     </head>

@@ -9,9 +9,10 @@
     ?>
     <head>
         <meta charset="utf-8">
-        <title>Titre de la page</title>
+        <title>Overwatch Collection</title>
         <link rel="stylesheet" href="style-hero.css">
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </head>
     <header>
         <ul id="nav">
@@ -28,80 +29,101 @@
         </ul>
     </header>
     <body>
-		<section id="lore">
+		<script>
+			$(document).ready(function(){
+				$('#hero_infos_h2').click(function(){
+					$('#hero_infos').show();
+					$('#rewards').hide();
+				});
+			});
 
-			<?php $hero = sqlSelectHeroById($_GET['id'])[0]; ?>
+			$(document).ready(function(){
+				$('#rewards_h2').click(function(){
+					$('#rewards').show();
+					$('#hero_infos').hide();
+				});
+			});
+        </script>
+		<div>
+			<h2 id="hero_infos_h2">Infos</h2>
+			<h2>/</h2>
+			<h2 id="rewards_h2">Rewards</h2>
+		</div>
+		<section id="hero_infos">
+			<section id="lore">
 
-			<div id="name">
-				<h1><?php echo $hero['name'] ?></h1>
-				<h2><?php echo $hero['real_name'] ?></h2>
-			</div>
-				
-			<div id="info">
-				<p>Affiliation : <?php echo (empty($hero['affiliation']))?'None':$hero['affiliation'] ?></p>
-				<p>Base Of Operations : <?php echo (empty($hero['base_of_operations']))?'None':$hero['base_of_operations'] ?></p>
-			</div>
-		</section>
-		
-		<section id="game">
-			<div id="role">
-				<p>Role : <?php print_r(sqlSelectRoleById($hero['id_role'])[0]['name']); ?></p>
-				<?php
-					$sub_roles = sqlSelectSubRolesByIdHero($hero['id_hero']);
+				<?php $hero = sqlSelectHeroById($_GET['id'])[0]; ?>
 
-					if(!empty($sub_roles))
-					{
-						echo '<p>Sub-Role : ';
-						foreach($sub_roles as $subRole)
+				<div id="name">
+					<h1><?php echo $hero['name'] ?></h1>
+					<h2><?php echo $hero['real_name'] ?></h2>
+				</div>
+					
+				<div id="info">
+					<p>Affiliation : <?php echo (empty($hero['affiliation']))?'None':$hero['affiliation'] ?></p>
+					<p>Base Of Operations : <?php echo (empty($hero['base_of_operations']))?'None':$hero['base_of_operations'] ?></p>
+				</div>
+			</section>
+			
+			<section id="game">
+				<div id="role">
+					<p>Role : <?php print_r(sqlSelectRoleById($hero['id_role'])[0]['name']); ?></p>
+					<?php
+						$sub_roles = sqlSelectSubRolesByIdHero($hero['id_hero']);
+
+						if(!empty($sub_roles))
 						{
-							echo ($subRole == end($sub_roles))?$subRole['name']:$subRole['name'] . ', ';
+							echo '<p>Sub-Role : ';
+							foreach($sub_roles as $subRole)
+							{
+								echo ($subRole == end($sub_roles))?$subRole['name']:$subRole['name'] . ', ';
+							}
+							echo '</p>';
 						}
-						echo '</p>';
-					}
-				?>
-			</div>
+					?>
+				</div>
 
-			<div id="stats">
-				<div>
-					<p id="life"><?php echo $hero['health'] ?></p>
-					<img src="img/heart.png" alt="Life">
-				</div>
-				<div>
-					<p id="armor"><?php echo $hero['armour'] ?></p>
-					<img src="img/armor.png" alt="Armor">
-				</div>
-				<div>
-				<p id="shield"><?php echo $hero['shield'] ?></p>
-				<img src="img/shield.png" alt="Shield">
-				</div>
-				<div>
-				<?php
-					for ($i = 1; $i <= $hero['difficulty']; $i++) {
-					echo '<img src="img/star.png" alt="Difficulty">';
-					} 
-				?>
-				</div>
-			</div>
-		</section>
-		
-		
-		<section id="abilities">
-			<h1>Abilities</h1>
-			<div>
-				<?php
-				$abilities = sqlSelectAbilitiesByIdHero($_GET['id']);
-					foreach($abilities as $ability)
-						{
-							echo '<div>';
-							echo 	'<h2>' . $ability['name'] . '</h2>';
-							echo 	'<p>' . $ability['description'] . '</p>';
-							echo '</div>';
+				<div id="stats">
+					<div>
+						<p id="life"><?php echo $hero['health'] ?></p>
+						<img src="img/heart.png" alt="Life">
+					</div>
+					<div>
+						<p id="armor"><?php echo $hero['armour'] ?></p>
+						<img src="img/armor.png" alt="Armor">
+					</div>
+					<div>
+					<p id="shield"><?php echo $hero['shield'] ?></p>
+					<img src="img/shield.png" alt="Shield">
+					</div>
+					<div>
+					<?php
+						for ($i = 1; $i <= $hero['difficulty']; $i++) {
+						echo '<img src="img/star.png" alt="Difficulty">';
 						} 
-				?>
-			</div>
+					?>
+					</div>
+				</div>
+			</section>
+			
+			
+			<section id="abilities">
+				<h1>Abilities</h1>
+				<div>
+					<?php
+					$abilities = sqlSelectAbilitiesByIdHero($_GET['id']);
+						foreach($abilities as $ability)
+							{
+								echo '<div>';
+								echo 	'<h2>' . $ability['name'] . '</h2>';
+								echo 	'<p>' . $ability['description'] . '</p>';
+								echo '</div>';
+							} 
+					?>
+				</div>
+			</section>
 		</section>
-		
-		<section id="rewards">
+		<section id="rewards" hidden>
 			<h1>Rewards</h1>
 			<?php
 
