@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 16 Novembre 2016 à 16:00
+-- Généré le :  Jeu 17 Novembre 2016 à 15:57
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -2120,15 +2120,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `username_2` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Contenu de la table `users`
 --
 
 INSERT INTO `users` (`id_user`, `username`, `password`, `email`) VALUES
-(7, 'sven', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'svenwikberg@gmail.com'),
-(16, 'test1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'qwe@qwe.ch');
+(7, 'sven', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'svenwikberg@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -2148,21 +2147,7 @@ CREATE TABLE IF NOT EXISTS `users_rewards` (
 --
 
 INSERT INTO `users_rewards` (`id_user`, `id_reward`) VALUES
-(16, 4),
-(16, 5),
-(16, 8),
-(16, 9),
-(16, 10),
-(16, 11),
-(16, 29),
-(7, 1225),
-(7, 1226),
-(7, 1229),
-(7, 1231),
-(7, 1232),
-(16, 1656),
-(16, 1657),
-(16, 1660);
+(7, 1565);
 
 --
 -- Contraintes pour les tables exportées

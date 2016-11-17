@@ -1,4 +1,5 @@
 <?php
+    include_once("config.php");
 ////////////////Overwatch-APi
     function heroes(){
         $ch = curl_init('https://overwatch-api.net/api/v1/hero');
@@ -57,7 +58,7 @@
 
         try {
             if ($myPdo == null) {
-                $myBdd = new PDO('mysql:host=127.0.0.1;dbname=overwatchcollection', 'wikbergs', '1234', array(
+                $myBdd = new PDO('mysql:host=' . HOST . ';dbname=' . DBNAME, USERNAME, PASSWORD, array(
                     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
                     PDO::ATTR_PERSISTENT => true));
                 return $myBdd;
