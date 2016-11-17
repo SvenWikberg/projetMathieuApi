@@ -216,22 +216,25 @@
 				$.ajax({
 					method: 'POST',
 					url: 'functions.ajax.php',
-					data: {'id_user': id_user, 'id_reward': parseInt(id_reward), 'function_name': 'insert_users_rewards'},
+					data: {'id_user': id_user, 'id_reward': parseInt(id_reward), 'function_name': 'insert_delete_users_rewards'},
 					dataType: 'json',
 					success : function(data) {
-						$(this_p).css('color', '#00FF4C');
-						$("#error").text(data.ReturnCode);
+						
+                        if(data.ReturnCode == "ADDED"){
+                            $(this_p).css('color', '#00FF4C');
+                        } else if (data.ReturnCode == "DELETED") {
+                            $(this_p).css('color', '#4A4C4E');
+                        }
 					},
 					error : function(data) {
-						$('#error').text(data.ReturnCode);
+						$('#error').text(data);
 					}
 				});
 			});
 		</script>
 		<p id="error"></p>
 		<?php
-		print_rr(sqlSelectIdRewardByIdUserIdReward(1,5));
-
+		
 		?>
     </body>
 </html>

@@ -192,6 +192,10 @@ body section#rewards div p{
     margin-right: 5%;
     text-align: center;
 }
+
+body section#rewards div p:hover{
+    cursor: pointer;
+}
 	
 body section#rewards div h3{
     margin-top: 0px;

@@ -4,23 +4,31 @@
 	$function_name = $_POST['function_name'];
 
 	switch ($function_name) {
-		case "insert_users_rewards":
+		case "insert_delete_users_rewards":
 			$id_user = $_POST['id_user'];
 			$id_reward = $_POST['id_reward'];
 
-			sqlInsertUserReward($id_user, $id_reward);
-			echo '{ "ReturnCode": "OK", "Message": "Data added"}';
+			if(isset(sqlSelectIdRewardByIdUserIdReward($id_user, $id_reward)[0])){
+				sqlDeleteUserRewardyIdUserIdReward($id_user, $id_reward);
+				echo '{ "ReturnCode": "DELETED", "Message": "Data already added"}';
+			} else {
+				sqlInsertUserReward($id_user, $id_reward);
+				echo '{ "ReturnCode": "ADDED", "Message": "Data added"}';
+			}
+
+			
+			
 			break;
 		case "check_login":
 			$user_name = $_POST['user_name'];
 			$user_pwd = sha1($_POST['user_pwd']);
 
-			$bdd_user_pwd = sqlSelectUserByUsername($user_name);
+			$bdd_user = sqlSelectUserByUsername($user_name);
 
-			if(isset($bdd_user_pwd[0])){
-				$bdd_user_pwd = $bdd_user_pwd[0]['password'];
+			if(isset($bdd_user[0])){
+				$bdd_user = $bdd_user[0]['password'];
 
-				if($bdd_user_pwd == $user_pwd){
+				if($bdd_user == $user_pwd){
 					$_SESSION['id_user'] = sqlSelectUserByUsername($user_name)[0]['id_user'];
 					echo '{ "ReturnCode": "OK", "Message": "Valid ID"}';
 				}else{
@@ -29,8 +37,7 @@
 			}else{
 				echo '{ "ReturnCode": "ERROR", "Message": "Non-valid username"}';
 			}
-				//echo '{ "ReturnCode": "ERROR", "Message": "Non-valid username"}';
-			
+
 			break;
 		case "logout":
 			session_destroy();

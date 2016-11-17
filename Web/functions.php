@@ -69,122 +69,189 @@
 
     function sqlSelectEvents() {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM events')->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM events');
+        $req->execute();
+        return $req;
     }
 
     function sqlSelectHeroes() {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM heroes')->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM heroes');
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectRewardTypes() {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM reward_types')->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM reward_types');
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectQualities() {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM qualities')->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM qualities');
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectHeroById($id) {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM heroes WHERE id_hero = ' . $id)->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM heroes WHERE id_hero = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectRoleById($id) {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM roles WHERE id_role = ' . $id)->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM roles WHERE id_role = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectSubRolesByIdHero($id) {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT sub_roles.id_sub_role as id, sub_roles.name as name FROM sub_roles JOIN heroes_sub_roles ON heroes_sub_roles.id_sub_role = sub_roles.id_sub_role JOIN heroes ON heroes.id_hero = heroes_sub_roles.id_hero WHERE heroes.id_hero = ' . $id)->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT sub_roles.id_sub_role as id, sub_roles.name as name FROM sub_roles JOIN heroes_sub_roles ON heroes_sub_roles.id_sub_role = sub_roles.id_sub_role JOIN heroes ON heroes.id_hero = heroes_sub_roles.id_hero WHERE heroes.id_hero = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectAbilitiesByIdHero($id) {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM abilities WHERE id_hero = ' . $id)->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM abilities WHERE id_hero = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectRewardsByIdHero($id) {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_hero = ' . $id)->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_hero = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectPlayerIcons(){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_reward_type = 3 ORDER BY name ASC')->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_reward_type = 3 ORDER BY name ASC');
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectSprays(){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM rewards WHERE id_reward_type = 1 AND id_hero IS NULL ORDER BY name ASC')->fetchAll();
-        return $reqArray;
+        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_reward_type = 1 AND id_hero IS NULL ORDER BY name ASC');
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectUserByUsername($user_name) {
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM users WHERE username = "' . $user_name . '"')->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM users WHERE username = :user_name');
+        $req->bindParam(':user_name', $user_name, PDO::PARAM_STR);
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlSelectIdRewardByIdUser($id){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT * FROM users_rewards WHERE id_user = ' . $id)->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT * FROM users_rewards WHERE id_user = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll();
     }
 
     function sqlInsertUser($user_name, $user_pwd, $email){
         $myPDO = bddPdo();
-        $myPDO->query('INSERT INTO users VALUES (NULL, "' . $user_name . '", "' . $user_pwd . '", "' . $email . '")');
+
+        $req = $myPDO->prepare("INSERT INTO users VALUES (NULL, :user_name, :user_pwd, :email);");
+        $req->bindParam(':user_name', $user_name, PDO::PARAM_STR);
+        $req->bindParam(':user_pwd', $user_pwd, PDO::PARAM_STR);
+        $req->bindParam(':email', $email, PDO::PARAM_STR);
+        $req->execute();
+
         $_SESSION['id_user'] = $myPDO->lastInsertId();
     }
 
     function sqlSelectRewardCountByIdUser($id){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT COUNT(DISTINCT id_reward) FROM users_rewards WHERE id_user = ' . $id)->fetchAll();
-        return $reqArray[0][0];
-    }   
 
+        $req = $myPDO->prepare('SELECT COUNT(DISTINCT id_reward) FROM users_rewards WHERE id_user = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll()[0][0];
+    }   
+///
     function sqlSelectRewardCount(){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT COUNT(DISTINCT id_reward) FROM rewards')->fetchAll();
-        return $reqArray[0][0];
+
+        $req = $myPDO->prepare('SELECT COUNT(DISTINCT id_reward) FROM rewards');
+        $req->execute();
+        return $req->fetchAll()[0][0];
     } 
 
     function sqlSelectRewardCountByIdEvent($id){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT COUNT(DISTINCT id_reward) FROM rewards WHERE id_event = ' . $id)->fetchAll();
-        return $reqArray[0][0];
+
+        $req = $myPDO->prepare('SELECT COUNT(DISTINCT id_reward) FROM rewards WHERE id_event = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll()[0][0];
     }
 
-    function sqlSelectRewardCountByIdEventIdUser($idEvent, $idUser){
+    function sqlSelectRewardCountByIdEventIdUser($id_event, $id_user){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT COUNT(DISTINCT rewards.id_reward) FROM rewards JOIN users_rewards ON rewards.id_reward = users_rewards.id_reward WHERE id_event = ' . $idEvent . ' AND id_user = ' . $idUser)->fetchAll();
-        return $reqArray[0][0];
+
+        $req = $myPDO->prepare('SELECT COUNT(DISTINCT rewards.id_reward) FROM rewards JOIN users_rewards ON rewards.id_reward = users_rewards.id_reward WHERE id_event = :id_event AND id_user = :id_user');
+        $req->bindParam(':id_event', $id_event, PDO::PARAM_INT);
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll()[0][0];
     }
 
     function sqlInsertUserReward($id_user, $id_reward){
         $myPDO = bddPdo();
-        $myPDO->query('INSERT INTO users_rewards VALUES (' . $id_user . ', ' . $id_reward . ')');
+
+        $req = $myPDO->prepare('INSERT INTO users_rewards VALUES (:id_user, :id_reward)');
+        $req->bindParam(':id_reward', $id_reward, PDO::PARAM_INT);
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->execute();
     }
 
     function sqlSelectIdRewardByIdUserIdReward($id_user, $id_reward){
         $myPDO = bddPdo();
-        $reqArray = $myPDO->query('SELECT id_reward FROM users_rewards WHERE id_user = ' . $id_user . ' AND id_reward = ' . $id_reward)->fetchAll();
-        return $reqArray;
+
+        $req = $myPDO->prepare('SELECT id_reward FROM users_rewards WHERE id_user = :id_user AND id_reward = :id_reward');
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->bindParam(':id_reward', $id_reward, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll();
     }   
+
+    function sqlDeleteUserRewardyIdUserIdReward($id_user, $id_reward){
+        $myPDO = bddPdo();
+
+        $req = $myPDO->prepare('DELETE FROM users_rewards WHERE id_user = :id_user AND id_reward = :id_reward');
+        $req->bindParam(':id_reward', $id_reward, PDO::PARAM_INT);
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->execute();
+    }
 
 
 ////////////////

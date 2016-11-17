@@ -33,6 +33,7 @@ header ul li a{
 
 header ul li a:hover{
     color: #4A4C4E;
+    cursor: pointer;
 }
 
 body{
