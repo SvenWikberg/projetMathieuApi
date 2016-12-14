@@ -45,7 +45,11 @@
                     $reward_count_e = sqlSelectRewardCountByIdEvent($event['id_event']);
                     $reward_owned_count_e = sqlSelectRewardCountByIdEventIdUser($event['id_event'], $_SESSION['id_user']);
 
-                    $ratio_e = $reward_owned_count_e / $reward_count_e * 100;
+					if($reward_count_e == 0){
+						$ratio_e = 0;
+					}else{
+						$ratio_e = $reward_owned_count_e / $reward_count_e * 100;
+					}
 
                     echo '<h3>' . $event['name'] . ', ' . $reward_owned_count_e . '/' . $reward_count_e . '</h3>';
                 ?>            

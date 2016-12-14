@@ -26,7 +26,7 @@
     </header>
     <body>
         <h1>Overwatch Collection</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta risus ut leo imperdiet, ac sodales tortor pharetra. Sed pulvinar rutrum ex eu luctus. Nullam vulputate mauris sit amet enim laoreet faucibus. Aliquam ac purus urna. Suspendisse eget ultricies ante. Morbi vel dictum dui. Morbi dignissim diam ac bibendum fringilla. Morbi tristique, est ut tempus luctus, libero tellus malesuada augue, ut tristique lorem nulla congue lectus. Aenean diam tellus, volutpat varius metus a, ultrices consectetur magna. Curabitur pharetra, lectus sed ultrices accumsan, nulla magna dapibus orci, vitae elementum tortor leo vitae nisi.</p>
-        <p>Proin non ultrices metus, ac mollis lorem. Ut vitae facilisis leo, eget semper odio. Sed efficitur, metus nec feugiat eleifend, nunc tortor ultricies ante, accumsan pharetra ante nisi ac ante. Aenean vitae ullamcorper purus, eu eleifend mauris. Pellentesque sagittis fringilla aliquam. Sed in augue dui. Nam rhoncus tempor tortor, vitae volutpat orci semper at. Donec non commodo ligula, ut eleifend felis.</p>
+        <p>Wanna have your skin, spray etc collection from overwatch and visualize it easily?</p> 
+		<p>Create an account and clik on the object you have. It's as easy as that</p>
     </body>
 </html>
