@@ -59,7 +59,15 @@ body section#statistics div#events_rewards{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;}
+    flex-wrap: wrap;
+    }
+
+body section#statistics div#heroes_rewards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    }
 
 a {
     text-decoration: none;

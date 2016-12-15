@@ -66,6 +66,34 @@
                 }
                 ?>
             </div>
+
+            <div id="heroes_rewards">
+                <?php
+                foreach(sqlSelectHeroes() as $hero){
+                    echo '<div style="width: 45%;">';
+
+                    $reward_count_e = sqlSelectRewardCountByIdHero($hero['id_hero']);
+                    $reward_owned_count_e = sqlSelectRewardCountByIdHeroIdUser($hero['id_hero'], $_SESSION['id_user']);
+
+					if($reward_count_e == 0){
+						$ratio_e = 0;
+					}else{
+						$ratio_e = $reward_owned_count_e / $reward_count_e * 100;
+					}
+
+                    echo '<h3>' . $hero['name'] . ', ' . $reward_owned_count_e . '/' . $reward_count_e . '</h3>';
+                ?>            
+                <div style="width: 100%; height: 25px; border: 2px solid #000000; border-radius: 5px;">
+                <?php
+                        echo '<div style="width: ' . $ratio_e . '% ;height: 25px ;background-color: #000000;"></div>'
+                ?>  
+                </div>
+
+                <?php
+                    echo '</div>';
+                }
+                ?>
+            </div>
         </section>
         <script>
 			$("#logout").click(function() {

@@ -244,6 +244,25 @@
         return $req->fetchAll()[0][0];
     }
 
+    function sqlSelectRewardCountByIdHero($id){
+        $myPDO = bddPdo();
+
+        $req = $myPDO->prepare('SELECT COUNT(DISTINCT id_reward) FROM rewards WHERE id_hero = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll()[0][0];
+    }
+
+    function sqlSelectRewardCountByIdHeroIdUser($id_event, $id_user){
+        $myPDO = bddPdo();
+
+        $req = $myPDO->prepare('SELECT COUNT(DISTINCT rewards.id_reward) FROM rewards JOIN users_rewards ON rewards.id_reward = users_rewards.id_reward WHERE id_hero = :id_hero AND id_user = :id_user');
+        $req->bindParam(':id_hero', $id_event, PDO::PARAM_INT);
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll()[0][0];
+    }
+
     function sqlInsertUserReward($id_user, $id_reward){
         $myPDO = bddPdo();
 
@@ -271,7 +290,6 @@
         $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $req->execute();
     }
-
 
 ////////////////
 
