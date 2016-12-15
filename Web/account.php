@@ -9,6 +9,7 @@
         <title>Overwatch Collection</title>
         <link rel="stylesheet" href="style-account.css">
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <link rel="shortcut icon"  type="image/x-icon" href="img/logo.ico" />
     </head>
     <header>
         <ul id="nav">

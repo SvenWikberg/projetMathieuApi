@@ -9,6 +9,7 @@
         <title>Overwatch Collection</title>
         <link rel="stylesheet" href="style-index.css">
         <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+        <link rel="shortcut icon"  type="image/x-icon" href="img/logo.ico" />
     </head>
     <header>
         <ul id="nav">
