@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 15 Décembre 2016 à 11:33
+-- Généré le :  Jeu 15 Décembre 2016 à 15:45
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `heroes` (
 INSERT INTO `heroes` (`id_hero`, `name`, `description`, `id_role`, `health`, `armour`, `shield`, `real_name`, `age`, `height`, `affiliation`, `base_of_operations`, `difficulty`) VALUES
 (1, 'Ana', 'Ana’s versatile arsenal allows her to affect heroes all over the battlefield. Her Biotic Rifle rounds and Biotic Grenades heal allies and damage or impair enemies; her sidearm tranquilizes key targets, and Nano Boost gives one of her comrades a considerable increase in power.', 4, 200, 0, 0, 'Ana Amari', 60, NULL, 'Overwatch', 'Cairo, Egypt', 3),
 (2, 'Bastion', 'Repair protocols and the ability to transform between stationary Assault, mobile Recon and devastating Tank configurations provide Bastion with a high probability of victory.', 2, 200, 100, 0, 'SST Laboratories Siege Automaton E54', 30, 220, 'NULL', 'NULL', 1),
-(3, 'D.Va', 'D.Va’s mech is nimble and powerful—its twin Fusion Cannons blast away with autofire at short range, and she can use its Boosters to barrel over enemies and obstacles, or deflect attacks with her projectile-dismantling Defense Matrix.', 3, 100, 400, 0, 'Hana Song', 19, NULL, 'Mobile Exo-Force of the Korean Army', 'Busan, South Korea', 2),
+(3, 'D.Va', 'D.Va’s mech is nimble and powerful—its twin Fusion Cannons blast away with autofire at short range, and she can use its Boosters to barrel over enemies and obstacles, or deflect attacks with her projectile-dismantling Defense Matrix.', 3, 200, 400, 0, 'Hana Song', 19, NULL, 'Mobile Exo-Force of the Korean Army', 'Busan, South Korea', 2),
 (4, 'Genji', 'Genji flings precise and deadly Shuriken at his targets, and uses his technologically-advanced katana to deflect projectiles or deliver a Swift Strike that cuts down enemies.', 1, 200, 0, 0, 'Genji Shimada', 35, NULL, 'Shimada Clan', 'Shambali Monastery, Nepal', 3),
 (5, 'Hanzo', 'Hanzo’s versatile arrows can reveal his enemies or fragment to strike multiple targets. He can scale walls to fire his bow from on high, or summon a titanic spirit dragon.', 2, 200, 0, 0, 'Hanzo Shimada', 38, 173, 'Shimada Clan', 'Hanamura, Japan', 3),
 (6, 'Junkrat', 'Junkrat’s area-denying armaments include a Frag Launcher that lobs bouncing grenades, Concussion Mines that send enemies flying, and Steel Traps that stop foes dead in their tracks.', 2, 200, 0, 0, 'Jamison Fawkes', 25, 195, 'Junkers', 'Junkertown, Australia', 2),
@@ -217,11 +217,12 @@ INSERT INTO `heroes` (`id_hero`, `name`, `description`, `id_role`, `health`, `ar
 (15, 'Soldier: 76', 'Armed with cutting-edge weaponry, including an experimental pulse rifle that’s capable of firing spirals of high-powered Helix Rockets, Soldier: 76 has the speed and support know-how of a highly trained warrior.', 1, 200, 0, 0, 'Jack Morrison', 55, 185, 'Overwatch', 'NULL', 1),
 (16, 'Symmetra', 'Symmetra utilizes her light-bending Photon Projector to dispatch adversaries, shield her associates, construct teleportation pads and deploy particle-blasting Sentry Turrets.', 4, 100, 0, 0, 'Satya Vaswani', 28, 170, 'Vishkar Corporation', 'Utopaea, India', 2),
 (17, 'Torbjörn', 'Torbjörn’s extensive arsenal includes a rivet gun and hammer, as well as a personal forge that he can use to build upgradeable turrets and dole out protective armor packs.', 2, 200, 0, 0, 'Torbjörn Lindholm', 57, 140, 'Overwatch', 'Gothenburg, Sweden', 2),
+(18, 'Tracer', 'Toting twin pulse pistols, energy-based time bombs, and rapid-fire banter, Tracer is able to link" through space and rewind her personal timeline as she battles to right wrongs the world over."""', 1, 150, 0, 0, 'Lena Oxton', 26, 162, 'Overwatch', 'London, England', 2),
 (19, 'Widowmaker', 'Widowmaker equips herself with whatever it takes to eliminate her targets, including mines that dispense poisonous gas, a visor that grants her squad infra-sight, and a powerful sniper rifle that can fire in fully-automatic mode.', 2, 200, 0, 0, 'Amélie Lacroix', 33, 175, 'Talon', 'Annecy, France', 2),
 (20, 'Winston', 'Winston wields impressive inventions—a jump pack, electricity-blasting Tesla Cannon, portable shield projector and more—with literal gorilla strength.', 3, 400, 100, 0, 'Winston', 29, 220, 'Overwatch', 'Watchpoint Gibraltar', 2),
 (21, 'Zarya', 'Deploying powerful personal barriers that convert incoming damage into energy for her massive Particle Cannon, Zarya is an invaluable asset on the front lines of any battle.', 3, 200, 0, 200, 'Aleksandra Zaryanova', 28, 195, 'Russian Defense Forces', 'Krasnoyarsk Front, Russia', 3),
 (22, 'Zenyatta', 'Zenyatta calls upon orbs of harmony and discord to heal his teammates and weaken his opponents, all while pursuing a transcendent state of immunity to damage.', 4, 50, 0, 150, 'Tekhartha Zenyatta', 20, 172, 'The Shambali', 'Shambali Monastery, Nepal', 3),
-(23, 'Sombra', 'Stealth and debilitating attacks make Sombra a powerful infiltrator. Her hacking can disrupt her enemies, ensuring they''re easier to take out, while her EMP provides the upper hand against multiple foes at once. Sombra’s ability to Translocate and camouflage herself makes her a hard target to pin down.', 1, 200, 0, 0, '', 30, NULL, 'Talon', 'Dorado, Mexico', 3);
+(23, 'Sombra', 'Stealth and debilitating attacks make Sombra a powerful infiltrator. Her hacking can disrupt her enemies, ensuring they''re easier to take out, while her EMP provides the upper hand against multiple foes at once. Sombra’s ability to Translocate and camouflage herself makes her a hard target to pin down.', 1, 200, 0, 0, '░░░░░░', 30, NULL, 'Talon', 'Dorado, Mexico', 3);
 
 -- --------------------------------------------------------
 
@@ -2245,18 +2246,6 @@ CREATE TABLE IF NOT EXISTS `users_rewards` (
   PRIMARY KEY (`id_user`,`id_reward`),
   KEY `id_reward` (`id_reward`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `users_rewards`
---
-
-INSERT INTO `users_rewards` (`id_user`, `id_reward`) VALUES
-(7, 1223),
-(7, 1224),
-(7, 1225),
-(7, 1226),
-(7, 1565),
-(7, 1575);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
