@@ -1,0 +1,124 @@
+@font-face {
+    font-family: "BigNoodle";
+    src: url('font/big_noodle_titling.ttf');
+}
+@font-face {
+    font-family: "BigNoodle";
+    font-style: italic;
+    src: url('font/big_noodle_titling_oblique.ttf');
+}
+
+body{
+    font-family: "BigNoodle", Helvetica, Arial, sans-serif;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FAFAFA;
+}
+
+body div#events{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+body div#events div{
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 48%;
+    padding-bottom: 8%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+body div#events div.event_2{
+    justify-content: flex-end;
+}
+
+body div#events div.event_1{
+    justify-content: flex-start;
+}
+
+
+
+body h1{
+    font-style: italic;
+    font-weight: normal;
+    font-size: 3rem;
+    color: #FF9C1E;
+}
+
+
+header ul{
+    margin: 0px;
+    padding: 20px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #AAAAAA;
+    border-radius: 10px;
+}
+
+header ul li img{
+    width: 90px;
+}
+
+header ul li a{
+    color: #FF9C1E;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+header ul li a:hover{
+    color: #4A4C4E;
+}
+
+a {
+    text-decoration: none;
+}
+
+p{
+    margin-top: 0px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    text-align: justify;
+    color: #4A4C4E
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,126 @@
+@font-face {
+    font-family: "BigNoodle";
+    src: url('font/big_noodle_titling.ttf');
+}
+@font-face {
+    font-family: "BigNoodle";
+    font-style: italic;
+    src: url('font/big_noodle_titling_oblique.ttf');
+}
+
+
+header ul{
+    margin: 0px;
+    padding: 20px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #AAAAAA;
+    border-radius: 10px;
+}
+
+header ul li img{
+    width: 90px;
+}
+
+header ul li a{
+    color: #FF9C1E;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+header ul li a:hover{
+    color: #4A4C4E;
+}
+
+body{
+    font-family: "BigNoodle", Helvetica, Arial, sans-serif;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FAFAFA;
+}
+
+body h1{
+    font-style: italic;
+    font-weight: normal;
+    font-size: 3rem;
+    color: #FF9C1E;
+}
+
+
+body div {
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+body div div{
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+	justify-content: space-between;
+    flex-wrap: wrap;
+    /*padding: 20px 0px 20px 0px;*/
+    border-radius: 10px;
+}
+body div div p.rewardp{
+    margin: 10px 5% 10px 5%;
+    width: fit-content;
+    text-align: center;
+}
+
+body div p.rewardp:hover{
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+p{
+    margin-top: 0px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    text-align: justify;
+    color: #4A4C4E
+}
+
+h2{
+    margin: 0px;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

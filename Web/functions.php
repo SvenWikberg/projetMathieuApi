@@ -76,6 +76,15 @@
         return $req;
     }
 
+    function sqlSelectEventById($id) {
+        $myPDO = bddPdo();
+
+        $req = $myPDO->prepare('SELECT * FROM events WHERE id_event = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch();
+    }
+
     function sqlSelectHeroes() {
         $myPDO = bddPdo();
 
@@ -106,7 +115,7 @@
         $req = $myPDO->prepare('SELECT * FROM heroes WHERE id_hero = :id');
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
-        return $req->fetchAll();
+        return $req->fetch();
     }
 
     function sqlSelectRoleById($id) {
@@ -143,6 +152,15 @@
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll();
+    }
+
+    function sqlSelectRewardsByIdEvent($id) {
+        $myPDO = bddPdo();
+
+        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_event = :id');
+        $req->bindParam(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
     function sqlSelectPlayerIcons(){

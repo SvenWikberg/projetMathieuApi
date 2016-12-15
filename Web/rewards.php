@@ -18,6 +18,7 @@
             <li><a href="index.php"><img src="img/logo.png" alt="Logo" id="logo"></a></li>
             <li class="navName"><a href="heroes.php"><h2>Heroes</h2></a></li>
             <li class="navName"><a href="rewards.php"><h2>Rewards</h2></a></li>
+            <li class="navName"><a href="events.php"><h2>Events</h2></a></li>
             <?php
             if(isset($_SESSION['id_user'])){
 			    echo '<li class="navName"><a href="account.php"><h2>Account</h2></a></li>';

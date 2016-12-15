@@ -4,7 +4,7 @@
     $myPDO = bddPdo();
 
 ////////////////Sync Heroes
-    /*$heroes = heroes();
+    $heroes = heroes();
 
     $myPDO->query('TRUNCATE TABLE heroes');
     foreach($heroes->data as $hero_id){
@@ -13,8 +13,8 @@
         $affiliation = (empty($hero->affiliation))?'NULL':$hero->affiliation;
         $boo = (empty($hero->base_of_operations))?'NULL':$hero->base_of_operations;
 
-        $myPDO->query('INSERT INTO heroes VALUES (' . $hero->id . ',"' . $hero->name . '","' . $hero->description . '",' . $hero->role->id . ',' . $hero->health . ',' . $hero->armour . ',' . $hero->shield . ',"' . $hero->real_name . '",' . $hero->age . ',' . $height . ',"' . $affiliation . '","' . $boo . '",' . $hero->difficulty . ')');
-    } */
+        $myPDO->query('INSERT INTO heroes VALUES (' . $hero->id . ',"' . $hero->name . '",\'' . str_replace('\'', '\\\'', $hero->description) . '\',' . $hero->role->id . ',' . $hero->health . ',' . $hero->armour . ',' . $hero->shield . ',"' . $hero->real_name . '",' . $hero->age . ',' . $height . ',"' . $affiliation . '","' . $boo . '",' . $hero->difficulty . ')');
+    } 
 ////////////////
 
 

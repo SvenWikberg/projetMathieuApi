@@ -15,6 +15,7 @@
             <li><a href="index.php"><img src="img/logo.png" alt="Logo" id="logo"></a></li>
             <li class="navName"><a href="heroes.php"><h2>Heroes</h2></a></li>
             <li class="navName"><a href="rewards.php"><h2>Rewards</h2></a></li>
+            <li class="navName"><a href="events.php"><h2>Events</h2></a></li>
 			<li class="navName"><a href="login.php"><h2>Login</h2></a></li>
         </ul>
     </header>

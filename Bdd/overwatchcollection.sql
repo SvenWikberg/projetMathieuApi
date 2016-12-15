@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.1.4
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 15 Décembre 2016 à 00:07
--- Version du serveur :  10.1.19-MariaDB
--- Version de PHP :  5.6.28
+-- Généré le :  Jeu 15 Décembre 2016 à 11:33
+-- Version du serveur :  5.6.15-log
+-- Version de PHP :  5.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de données :  `overwatchcollection`
@@ -26,13 +26,14 @@ SET time_zone = "+00:00";
 -- Structure de la table `abilities`
 --
 
-CREATE TABLE `abilities` (
-  `id_ability` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `abilities` (
+  `id_ability` int(11) NOT NULL AUTO_INCREMENT,
   `name` text CHARACTER SET utf8 NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
   `id_hero` int(11) NOT NULL,
-  `is_ultimate` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `is_ultimate` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id_ability`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
 
 --
 -- Contenu de la table `abilities`
@@ -154,12 +155,13 @@ INSERT INTO `abilities` (`id_ability`, `name`, `description`, `id_hero`, `is_ult
 -- Structure de la table `events`
 --
 
-CREATE TABLE `events` (
-  `id_event` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `events` (
+  `id_event` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `end_date` date NOT NULL,
+  PRIMARY KEY (`id_event`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `events`
@@ -176,7 +178,7 @@ INSERT INTO `events` (`id_event`, `name`, `start_date`, `end_date`) VALUES
 -- Structure de la table `heroes`
 --
 
-CREATE TABLE `heroes` (
+CREATE TABLE IF NOT EXISTS `heroes` (
   `id_hero` int(11) NOT NULL,
   `name` varchar(25) CHARACTER SET utf8 NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
@@ -189,7 +191,8 @@ CREATE TABLE `heroes` (
   `height` int(11) DEFAULT NULL,
   `affiliation` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `base_of_operations` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `difficulty` int(11) NOT NULL
+  `difficulty` int(11) NOT NULL,
+  PRIMARY KEY (`id_hero`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -226,9 +229,10 @@ INSERT INTO `heroes` (`id_hero`, `name`, `description`, `id_role`, `health`, `ar
 -- Structure de la table `heroes_sub_roles`
 --
 
-CREATE TABLE `heroes_sub_roles` (
+CREATE TABLE IF NOT EXISTS `heroes_sub_roles` (
   `id_hero` int(11) NOT NULL,
-  `id_sub_role` int(11) NOT NULL
+  `id_sub_role` int(11) NOT NULL,
+  PRIMARY KEY (`id_hero`,`id_sub_role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -252,9 +256,10 @@ INSERT INTO `heroes_sub_roles` (`id_hero`, `id_sub_role`) VALUES
 -- Structure de la table `qualities`
 --
 
-CREATE TABLE `qualities` (
+CREATE TABLE IF NOT EXISTS `qualities` (
   `id_quality` int(11) NOT NULL,
-  `name` varchar(25) CHARACTER SET utf8 NOT NULL
+  `name` varchar(25) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id_quality`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -273,16 +278,17 @@ INSERT INTO `qualities` (`id_quality`, `name`) VALUES
 -- Structure de la table `rewards`
 --
 
-CREATE TABLE `rewards` (
-  `id_reward` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `rewards` (
+  `id_reward` int(11) NOT NULL AUTO_INCREMENT,
   `name` text CHARACTER SET utf8 NOT NULL,
   `id_reward_type` int(11) NOT NULL,
   `id_hero` int(11) DEFAULT NULL,
   `cost` int(11) DEFAULT NULL,
   `id_currency` int(11) DEFAULT NULL,
   `id_quality` int(11) NOT NULL,
-  `id_event` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_event` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_reward`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1856 ;
 
 --
 -- Contenu de la table `rewards`
@@ -1612,9 +1618,9 @@ INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`,
 (1321, 'Abominable', 7, 9, 1000, 1, 4, 0),
 (1322, 'Yeti Hunter', 7, 9, 1000, 1, 4, 0),
 (1323, 'Classic', 7, 10, 0, 0, 1, 0),
-(1324, 'Mist', 7, 10, 75, 1, 2, 0),
-(1325, 'Orchid', 7, 10, 75, 1, 2, 0);
+(1324, 'Mist', 7, 10, 75, 1, 2, 0);
 INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`, `id_currency`, `id_quality`, `id_event`) VALUES
+(1325, 'Orchid', 7, 10, 75, 1, 2, 0),
 (1326, 'Verdant', 7, 10, 75, 1, 2, 0),
 (1327, 'Celestial', 7, 10, 75, 1, 2, 0),
 (1328, 'Amber', 7, 10, 250, 1, 3, 0),
@@ -2132,7 +2138,9 @@ INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`,
 (1850, 'Snowcree', 1, 0, 75, 1, 1, 3),
 (1851, 'Winter Wonderland', 1, 0, 75, 1, 1, 3),
 (1852, 'Snowflakes', 6, 16, 750, 1, 3, 3),
-(1853, 'Under The Mistletoe', 6, 19, 750, 1, 3, 3);
+(1853, 'Under The Mistletoe', 6, 19, 750, 1, 3, 3),
+(1854, 'Balderich', 7, 13, 1000, 1, 4, NULL),
+(1855, 'Greifhardt', 7, 13, 1000, 1, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -2140,9 +2148,10 @@ INSERT INTO `rewards` (`id_reward`, `name`, `id_reward_type`, `id_hero`, `cost`,
 -- Structure de la table `reward_types`
 --
 
-CREATE TABLE `reward_types` (
+CREATE TABLE IF NOT EXISTS `reward_types` (
   `id_reward_type` int(11) NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8 NOT NULL
+  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id_reward_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2164,9 +2173,10 @@ INSERT INTO `reward_types` (`id_reward_type`, `name`) VALUES
 -- Structure de la table `roles`
 --
 
-CREATE TABLE `roles` (
+CREATE TABLE IF NOT EXISTS `roles` (
   `id_role` int(11) NOT NULL,
-  `name` varchar(25) CHARACTER SET utf8 NOT NULL
+  `name` varchar(25) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id_role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2185,9 +2195,10 @@ INSERT INTO `roles` (`id_role`, `name`) VALUES
 -- Structure de la table `sub_roles`
 --
 
-CREATE TABLE `sub_roles` (
+CREATE TABLE IF NOT EXISTS `sub_roles` (
   `id_sub_role` int(11) NOT NULL,
-  `name` varchar(25) CHARACTER SET utf8 NOT NULL
+  `name` varchar(25) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id_sub_role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2205,12 +2216,15 @@ INSERT INTO `sub_roles` (`id_sub_role`, `name`) VALUES
 -- Structure de la table `users`
 --
 
-CREATE TABLE `users` (
-  `id_user` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(25) CHARACTER SET utf8 NOT NULL,
   `password` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `email` varchar(100) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `email` varchar(100) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id_user`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `username_2` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `users`
@@ -2225,9 +2239,11 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `email`) VALUES
 -- Structure de la table `users_rewards`
 --
 
-CREATE TABLE `users_rewards` (
+CREATE TABLE IF NOT EXISTS `users_rewards` (
   `id_user` int(11) NOT NULL,
-  `id_reward` int(11) NOT NULL
+  `id_reward` int(11) NOT NULL,
+  PRIMARY KEY (`id_user`,`id_reward`),
+  KEY `id_reward` (`id_reward`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -2242,103 +2258,6 @@ INSERT INTO `users_rewards` (`id_user`, `id_reward`) VALUES
 (7, 1565),
 (7, 1575);
 
---
--- Index pour les tables exportées
---
-
---
--- Index pour la table `abilities`
---
-ALTER TABLE `abilities`
-  ADD PRIMARY KEY (`id_ability`);
-
---
--- Index pour la table `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`id_event`);
-
---
--- Index pour la table `heroes`
---
-ALTER TABLE `heroes`
-  ADD PRIMARY KEY (`id_hero`);
-
---
--- Index pour la table `heroes_sub_roles`
---
-ALTER TABLE `heroes_sub_roles`
-  ADD PRIMARY KEY (`id_hero`,`id_sub_role`);
-
---
--- Index pour la table `qualities`
---
-ALTER TABLE `qualities`
-  ADD PRIMARY KEY (`id_quality`);
-
---
--- Index pour la table `rewards`
---
-ALTER TABLE `rewards`
-  ADD PRIMARY KEY (`id_reward`);
-
---
--- Index pour la table `reward_types`
---
-ALTER TABLE `reward_types`
-  ADD PRIMARY KEY (`id_reward_type`);
-
---
--- Index pour la table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id_role`);
-
---
--- Index pour la table `sub_roles`
---
-ALTER TABLE `sub_roles`
-  ADD PRIMARY KEY (`id_sub_role`);
-
---
--- Index pour la table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `username_2` (`username`);
-
---
--- Index pour la table `users_rewards`
---
-ALTER TABLE `users_rewards`
-  ADD PRIMARY KEY (`id_user`,`id_reward`),
-  ADD KEY `id_reward` (`id_reward`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `abilities`
---
-ALTER TABLE `abilities`
-  MODIFY `id_ability` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
---
--- AUTO_INCREMENT pour la table `events`
---
-ALTER TABLE `events`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT pour la table `rewards`
---
-ALTER TABLE `rewards`
-  MODIFY `id_reward` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1854;
---
--- AUTO_INCREMENT pour la table `users`
---
-ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
