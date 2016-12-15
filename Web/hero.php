@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="style-hero.css">
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <link type="image/x-icon" href="img/logo.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="img/logo.ico" />
     </head>
     <header>
         <ul id="nav">
@@ -46,7 +46,7 @@
 				});
 			});
         </script>
-		<div>
+		<div id="infosRewardsNav">
 			<h2 id="hero_infos_h2">Infos</h2>
 			<h2>/</h2>
 			<h2 id="rewards_h2">Rewards</h2>
@@ -126,86 +126,84 @@
 			</section>
 		</section>
 		<section id="rewards" hidden>
-			<h1>Rewards</h1>
 			<?php
+			echo '<h1>' . sqlSelectHeroById($_GET['id'])['name'] . '\'s Rewards</h1>';
 
-			$skinTab = [
-				'Title' => '<h2>Skins</h2>',
-				'Common' => '<p class="commonp">Common</p><div class="common">',
-				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
-			];
-			$introTab = [
-				'Title' => '<h2>Highlight Intros</h2>',
-				'Common' => '<p class="commonp">Common</p><div class="common">',
-				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
-			];
-			$emoteTab = [
-				'Title' => '<h2>Emotes</h2>',
-				'Common' => '<p class="commonp">Common</p><div class="common">',
-				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
-			];
-			$poseTab = [
-				'Title' => '<h2>Victory Poses</h2>',
-				'Common' => '<p class="commonp">Common</p><div class="common">',
-				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
-			];
-			$sprayTab = [
-				'Title' => '<h2>Sprays</h2>',
-				'Common' => '<p class="commonp">Common</p><div class="common">',
-				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
-			];
-			$voiceTab = [
-				'Title' => '<h2>Voice Lines</h2>',
-				'Common' => '<p class="commonp">Common</p><div class="common">',
-				'Rare' => '<p class="rarep">Rare</p><div class="rare">',
-				'Epic' => '<p class="epicp">Epic</p><div class="epic">',
-				'Legendary' => '<p class="legendaryp">Legendary</p><div class="legendary">'
-			];
+			$legTab = [
+                'Skin' => '<h2 style="color: #FF9C1E;">Skin</h2><div>',
+                'Highlight Intro' => '<h2 style="color: #FF9C1E;">Highlight Intros</h2><div>',
+                'Emote' => '<h2 style="color: #FF9C1E;">Emotes</h2><div>',
+                'Victory Pose' => '<h2 style="color: #FF9C1E;">Victory Poses</h2><div>',
+                'Spray' => '<h2 style="color: #FF9C1E;">Sprays</h2><div>',
+                'Voice Line' => '<h2 style="color: #FF9C1E;">Voice Lines</h2><div>',
+                'Player Icon' => '<h2 style="color: #FF9C1E;">Player Icon</h2><div>'
+            ];
+            $epicTab = [
+                'Skin' => '<h2 style="color: #FE01FE;">Skin</h2><div>',
+                'Highlight Intro' => '<h2 style="color: #FE01FE;">Highlight Intros</h2><div>',
+                'Emote' => '<h2 style="color: #FE01FE;">Emotes</h2><div>',
+                'Victory Pose' => '<h2 style="color: #FE01FE;">Victory Poses</h2><div>',
+                'Spray' => '<h2 style="color: #FE01FE;">Sprays</h2><div>',
+                'Voice Line' => '<h2 style="color: #FE01FE;">Voice Lines</h2><div>',
+                'Player Icon' => '<h2 style="color: #FE01FE;">Player Icon</h2><div>'
+            ];
+            $rareTab = [
+                'Skin' => '<h2 style="color: #01C2FD;">Skin</h2><div>',
+                'Highlight Intro' => '<h2 style="color: #01C2FD;">Highlight Intros</h2><div>',
+                'Emote' => '<h2 style="color: #01C2FD;">Emotes</h2><div>',
+                'Victory Pose' => '<h2 style="color: #01C2FD;">Victory Poses</h2><div>',
+                'Spray' => '<h2 style="color: #01C2FD;">Sprays</h2><div>',
+                'Voice Line' => '<h2 style="color: #01C2FD;">Voice Lines</h2><div>',
+                'Player Icon' => '<h2 style="color: #01C2FD;">Player Icon</h2><div>'
+            ];
+            $commonTab = [
+                'Skin' => '<h2 style="color: #AAAAAA;">Skin</h2><div>',
+                'Highlight Intro' => '<h2 style="color: #AAAAAA;">Highlight Intros</h2><div>',
+                'Emote' => '<h2 style="color: #AAAAAA;">Emotes</h2><div>',
+                'Victory Pose' => '<h2 style="color: #AAAAAA;">Victory Poses</h2><div>',
+                'Spray' => '<h2 style="color: #AAAAAA;">Sprays</h2><div>',
+                'Voice Line' => '<h2 style="color: #AAAAAA;">Voice Lines</h2><div>',
+                'Player Icon' => '<h2 style="color: #AAAAAA;">Player Icon</h2><div>'
+            ];
+
+            $rewardTab = [
+                'Legendary' => [$legTab, '#FF9C1E'],
+                'Epic' => [$epicTab, '#FE01FE'],
+                'Rare' => [$rareTab, '#01C2FD'],
+                'Common' => [$commonTab, '#AAAAAA']
+            ];
 
 
-			$rewardTab = [
-				'Skin' => $skinTab,
-				'Highlight Intro' => $introTab,
-				'Emote' => $emoteTab,
-				'Victory Pose' => $poseTab,
-				'Spray' => $sprayTab,
-				'Voice Line' => $voiceTab
-			];
+            $rewards = sqlSelectRewardsByIdHero($_GET['id']);
+            $rewardTypes = sqlSelectRewardTypes();
+            $qualities = sqlSelectQualities();
 
-			$rewards = sqlSelectRewardsByIdHero($_GET['id']);
-			$rewardTypes = sqlSelectRewardTypes();
-			$qualities = sqlSelectQualities();
+            //print_rr($heroes);
 
-			foreach($rewards as $reward){// ajoute les rewards du hero dans les bons type et qualité de reward
+            foreach($rewards as $reward){// ajoute les rewards du hero dans les bons type et qualité de reward
 			    $check = '';
 				if(isset($rewards_owned))
 					foreach($rewards_owned as $id_reward){
 						if($id_reward['id_reward'] == $reward['id_reward']){
 							$check = ' style="color: #00FF4C"';
 						}
-					}         
+					}     
 				//nom du type de rewards (id du tableau associatif)  //nom de la qualité de la rewards (id du tableau associatif -> 2eme degre)
-				$rewardTab[$rewardTypes[$reward['id_reward_type'] - 1]['name']][$qualities[$reward['id_quality'] - 1]['name']] .= '<p ' . $check . ' class="rewardp">' . $reward['name'] . '<var hidden>' . $reward['id_reward'] . '</var></p>';
-			} 
-				
-			foreach($rewardTab as $tab){
+				$rewardTab[$qualities[$reward['id_quality'] - 1]['name']][0][$rewardTypes[$reward['id_reward_type'] - 1]['name']] .= '<p ' . $check . ' class="rewardp">' . $reward['name'] . '<var hidden>' . $reward['id_reward'] . '</var></p>';
+                
+            }
+
+            foreach($rewardTab as $tab){
 				$lnMaxItems = 0;
-				foreach($tab as $itemQuality){
-					if($itemQuality[strlen($itemQuality) - 2] == 'p' || $itemQuality[strlen($itemQuality) - 2] == '2'){ //si l'avant dernier caractere est un 'p' ou un '2' ça veut dire qu'on a ajouté une reward dans ce string donc on l'affiche
-						$itemQuality .= '</div>';
-						echo $itemQuality;
+
+                echo '<div style="border: 5px solid ' . $tab[1] . ';">';
+				foreach($tab[0] as $rewardType){
+					if($rewardType[strlen($rewardType) - 2] == 'p'){ //si l'avant dernier caractere est un 'p' ou un '2' ça veut dire qu'on a ajouté une reward dans ce string donc on l'affiche
+						$rewardType .= '</div>';
+                        echo $rewardType;
 					}
 				}
+                echo '</div>';
 			}
 			?>			
 		</section>
