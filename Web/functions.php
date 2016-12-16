@@ -173,7 +173,7 @@
 
     function sqlSelectSprays(){
         $myPDO = bddPdo();
-        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_reward_type = 1 AND id_hero IS NULL ORDER BY name ASC');
+        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_reward_type = 1 AND id_hero = 0 ORDER BY name ASC');
         $req->execute();
         return $req->fetchAll();
     }
