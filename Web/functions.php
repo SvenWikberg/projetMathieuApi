@@ -148,7 +148,7 @@
     function sqlSelectRewardsByIdHero($id) {
         $myPDO = bddPdo();
 
-        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_hero = :id');
+        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_hero = :id ORDER BY name ASC');
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll();
@@ -157,7 +157,7 @@
     function sqlSelectRewardsByIdEvent($id) {
         $myPDO = bddPdo();
 
-        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_event = :id');
+        $req = $myPDO->prepare('SELECT * FROM rewards WHERE id_event = :id ORDER BY name ASC');
         $req->bindParam(':id', $id, PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
@@ -287,6 +287,14 @@
 
         $req = $myPDO->prepare('DELETE FROM users_rewards WHERE id_user = :id_user AND id_reward = :id_reward');
         $req->bindParam(':id_reward', $id_reward, PDO::PARAM_INT);
+        $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $req->execute();
+    }
+
+    function sqlInsertBaseRewards($id_user){
+        $myPDO = bddPdo();   
+
+        $req = $myPDO->prepare('INSERT INTO users_rewards(id_user, id_reward) SELECT :id_user, id_reward FROM rewards WHERE name LIKE "Heroic" OR name LIKE "Classic"');
         $req->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $req->execute();
     }

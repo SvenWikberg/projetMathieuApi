@@ -55,6 +55,7 @@
 				if(!isset($bdd_user[0])){
 					try{
 						sqlInsertUser($user_name, $user_pwd, $email);
+						sqlInsertBaseRewards($_SESSION['id_user']);
 						echo '{ "ReturnCode": "OK", "Message": "Account Created"}';
 					} catch (Exception $e){
 						echo '{ "ReturnCode": "ERROR", "Message": "' . $e . '"}';
