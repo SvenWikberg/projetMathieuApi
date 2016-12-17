@@ -1,11 +1,11 @@
 @font-face {
     font-family: "BigNoodle";
-    src: url('font/big_noodle_titling.ttf');
+    src: url('font/BigNoodleToo.ttf');
 }
 @font-face {
     font-family: "BigNoodle";
     font-style: italic;
-    src: url('font/big_noodle_titling_oblique.ttf');
+    src: url('font/BigNoodleTooOblique.ttf');
 }
 
 
@@ -30,6 +30,10 @@ header ul li a{
     color: #FF9C1E;
     font-style: normal;
     font-size: 1.5rem;
+}
+
+header ul li h2{
+    font-style: normal;
 }
 
 header ul li a:hover{

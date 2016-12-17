@@ -1,11 +1,11 @@
 @font-face {
     font-family: "BigNoodle";
-    src: url('font/big_noodle_titling.ttf');
+    src: url('font/BigNoodleToo.ttf');
 }
 @font-face {
     font-family: "BigNoodle";
     font-style: italic;
-    src: url('font/big_noodle_titling_oblique.ttf');
+    src: url('font/BigNoodleTooOblique.ttf');
 }
 
 header ul{
